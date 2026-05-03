@@ -43,6 +43,7 @@ next-env.d.ts
 # Trellis Master Docs & Research
 TRELLIS_MASTER.md
 Trellis_GEMINI_BUILD_KIT.md
-"TRELLIS — Therapy-Client Matching Research Master Document.md"
+TRELLIS*Research*Master*Document.md
 SAATHI_MASTER.md
-"SAATHI — Therapy-Client Matching Research Master Document.md"
+SAATHI*Research*Master*Document.md
+*.md.bak
