@@ -1,65 +1,73 @@
-import Image from "next/image";
+import React from "react";
+import { Leaf, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col px-6 pt-8 pb-12">
+      {/* Header */}
+      <header className="flex items-center gap-2 mb-12">
+        <Leaf className="text-trellis-primary fill-trellis-primary/20" size={28} />
+        <h1 className="font-serif text-2xl font-semibold tracking-tight text-trellis-text">
+          Trellis
+        </h1>
+      </header>
+
+      {/* Hero Section */}
+      <section className="animate-breathe">
+        <h2 className="font-serif text-4xl font-medium leading-[1.1] text-trellis-text tracking-tight">
+          Finding the right therapist is hard. We make it simple.
+        </h2>
+        <p className="font-sans text-lg text-trellis-text-muted mt-6 leading-relaxed">
+          Trellis matches you with a therapist who actually gets you — not a random name from a directory.
+        </p>
+
+        <div className="mt-10">
+          <Link href="/onboarding" className="w-full bg-trellis-primary-deep hover:bg-trellis-primary-deep/90 text-white rounded-2xl min-h-[56px] text-lg font-medium shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 group">
+            Begin
+            <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* How it Works */}
+      <section className="mt-16 space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-trellis-surface flex items-center justify-center shrink-0">
+            <span className="text-trellis-primary font-serif font-bold">1</span>
+          </div>
+          <p className="text-trellis-text font-medium">Tell us about you (~3 min)</p>
         </div>
-      </main>
+
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-trellis-surface flex items-center justify-center shrink-0">
+            <span className="text-trellis-primary font-serif font-bold">2</span>
+          </div>
+          <p className="text-trellis-text font-medium">We find your match</p>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-trellis-surface flex items-center justify-center shrink-0">
+            <span className="text-trellis-primary font-serif font-bold">3</span>
+          </div>
+          <p className="text-trellis-text font-medium">Your first session is free</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <div className="text-xs text-trellis-text-muted mt-12 pb-24 text-center">
+        <p>Built for <span className="font-semibold text-trellis-primary-deep">Elfina Health</span></p>
+        <p className="mt-1">By Tharun Gajula</p>
+        <Link href="/compare" className="block text-trellis-primary-deep font-bold text-sm mt-8 hover:underline transition-all">
+          View the clinical research →
+        </Link>
+      </div>
+
+      {/* Demo Autofill Button */}
+      <button className="fixed bottom-20 right-4 bg-trellis-primary-deep text-white px-5 py-3 rounded-full shadow-xl flex items-center gap-2 text-sm font-semibold z-50 hover:scale-105 active:scale-95 transition-all">
+        <span role="img" aria-label="bolt">⚡</span>
+        Demo
+      </button>
     </div>
   );
 }
