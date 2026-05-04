@@ -21,10 +21,10 @@ export default function BookedPage() {
 
       <div className="mt-16 w-full space-y-4">
         <Link 
-          href="/" 
-          className="block w-full bg-trellis-surface text-trellis-text py-4 rounded-2xl font-semibold active:scale-[0.98] transition-all"
+          href="/journey" 
+          className="flex items-center justify-center gap-2 w-full bg-trellis-primary-deep text-white py-4 rounded-2xl font-semibold active:scale-[0.98] transition-all shadow-md"
         >
-          Return Home
+          Continue to Your Journey
         </Link>
         <p className="text-[11px] text-trellis-text-muted uppercase tracking-widest font-bold">
           Ref: #TRL-{Math.floor(1000 + Math.random() * 9000)}

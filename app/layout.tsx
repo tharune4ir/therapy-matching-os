@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import LayoutClient from "@/components/LayoutClient";
+import { TrellisProvider } from "@/contexts/TrellisContext";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -24,7 +25,10 @@ export const metadata: Metadata = {
     siteName: "Trellis",
     type: "website",
   },
-  themeColor: "#F7F3ED", // trellis-bg
+};
+ 
+export const viewport = {
+  themeColor: "#F7F3ED",
 };
 
 export default function RootLayout({
@@ -35,7 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${inter.variable} antialiased`}>
-        <LayoutClient>{children}</LayoutClient>
+        <TrellisProvider>
+          <LayoutClient>{children}</LayoutClient>
+        </TrellisProvider>
       </body>
     </html>
   );

@@ -1,70 +1,98 @@
 "use client";
 
 import React from 'react';
-import { Mail, MessageCircle, ShieldAlert, ChevronDown } from 'lucide-react';
+import { Search, HelpCircle, Phone, MessageCircle, Mail, ExternalLink, ChevronRight, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HelpPage() {
+  const faqs = [
+    { q: "How does the matching algorithm work?", a: "We use a 28-variable weighted system called C-NIP to match your personality and clinical needs with therapist specializations." },
+    { q: "Can I change my therapist?", a: "Yes, you can request a re-match at any time from your journey page if you feel the alliance isn't working." },
+    { q: "Is my data private?", a: "Absolutely. All clinical data is encrypted and we never share your identity with third parties without consent." }
+  ];
+
   return (
     <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-24 font-sans text-trellis-text">
       {/* Header */}
-      <div className="pt-12 px-6 mb-8">
-        <h1 className="font-serif text-3xl mb-2 text-trellis-text">Help & Support</h1>
-        <p className="text-trellis-text-muted">How can we support your journey today?</p>
-      </div>
+      <header className="pt-12 px-6 mb-8">
+        <h1 className="font-serif text-3xl text-trellis-text leading-tight">Help & Support</h1>
+      </header>
 
-      {/* Contact Cards */}
-      <div className="px-6 grid grid-cols-2 gap-4 mb-10">
-        <button className="bg-trellis-surface rounded-2xl p-6 flex flex-col items-center text-center group active:scale-95 transition-all border border-trellis-primary/5">
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm group-hover:text-trellis-primary transition-colors">
-            <MessageCircle size={24} />
-          </div>
-          <span className="text-xs font-bold text-trellis-text">Chat with Care Team</span>
-        </button>
-
-        <button className="bg-trellis-surface rounded-2xl p-6 flex flex-col items-center text-center group active:scale-95 transition-all border border-trellis-primary/5">
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm group-hover:text-trellis-primary transition-colors">
-            <Mail size={24} />
-          </div>
-          <span className="text-xs font-bold text-trellis-text">Email Support</span>
-        </button>
-      </div>
-
-      {/* FAQ Section */}
-      <div className="px-6 space-y-4">
-        <h2 className="font-serif text-xl mb-4 text-trellis-text">Frequently Asked Questions</h2>
-        
-        <div className="space-y-3">
-          {[
-            "How does the matching algorithm work?",
-            "Can I switch my therapist?",
-            "Is my data confidential?",
-          ].map((question, i) => (
-            <div key={i} className="bg-white rounded-xl p-4 flex justify-between items-center shadow-sm border border-trellis-primary/5 active:bg-trellis-surface transition-colors cursor-pointer group">
-              <span className="text-sm font-medium text-trellis-text group-hover:text-trellis-primary-deep transition-colors leading-tight pr-4">
-                {question}
-              </span>
-              <ChevronDown size={16} className="text-trellis-text-muted flex-shrink-0" />
-            </div>
-          ))}
+      <main className="px-6 space-y-8 animate-breathe">
+        {/* Search Bar */}
+        <div className="relative">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-trellis-text-muted" size={18} />
+          <input 
+            type="text" 
+            placeholder="Search for help..." 
+            className="w-full bg-white border border-trellis-primary/10 rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-trellis-primary/20"
+          />
         </div>
-      </div>
 
-      {/* Crisis Link */}
-      <div className="mx-6 mt-12">
-        <Link 
-          href="/support" 
-          className="bg-trellis-crisis/10 border border-trellis-crisis/20 text-trellis-crisis rounded-2xl p-5 flex items-center justify-center gap-3 font-bold text-sm shadow-sm active:scale-[0.98] transition-all"
-        >
-          <ShieldAlert size={20} strokeWidth={2.5} />
-          I am in a crisis right now
-        </Link>
-      </div>
+        {/* Emergency Card */}
+        <div className="bg-red-50 rounded-[2rem] p-6 border border-red-100 shadow-sm">
+          <div className="flex items-center gap-3 mb-3">
+            <AlertCircle className="text-red-600" size={20} />
+            <h2 className="font-serif text-lg text-red-900">In a Crisis?</h2>
+          </div>
+          <p className="text-xs text-red-800/80 leading-relaxed mb-4">
+            If you are in immediate danger, please reach out to local emergency services or a crisis helpline.
+          </p>
+          <button className="w-full bg-red-600 text-white py-3 rounded-xl font-bold text-sm shadow-md flex items-center justify-center gap-2">
+            <Phone size={16} />
+            Call Crisis Helpline
+          </button>
+        </div>
 
-      {/* Version Footer */}
-      <p className="text-center text-[10px] text-trellis-text-muted/40 mt-16 px-12 leading-relaxed">
-        Our support team typically responds within 2-4 hours. For emergencies, please use the crisis resources above.
-      </p>
+        {/* Support Channels */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white p-5 rounded-3xl border border-trellis-primary/5 shadow-sm text-center">
+            <div className="w-10 h-10 bg-trellis-primary/10 rounded-full flex items-center justify-center text-trellis-primary mx-auto mb-3">
+              <MessageCircle size={20} />
+            </div>
+            <p className="text-sm font-semibold">Live Chat</p>
+            <p className="text-[10px] text-trellis-text-muted mt-1">2 min wait</p>
+          </div>
+          <div className="bg-white p-5 rounded-3xl border border-trellis-primary/5 shadow-sm text-center">
+            <div className="w-10 h-10 bg-trellis-primary/10 rounded-full flex items-center justify-center text-trellis-primary mx-auto mb-3">
+              <Mail size={20} />
+            </div>
+            <p className="text-sm font-semibold">Email Us</p>
+            <p className="text-[10px] text-trellis-text-muted mt-1">24h response</p>
+          </div>
+        </div>
+
+        {/* FAQs */}
+        <div className="space-y-4">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-trellis-text-muted px-2">Frequently Asked Questions</h3>
+          <div className="bg-white rounded-[2rem] overflow-hidden border border-trellis-primary/5 shadow-sm">
+            {faqs.map((faq, index) => (
+              <React.Fragment key={index}>
+                <div className="p-6">
+                  <p className="font-semibold text-sm mb-2">{faq.q}</p>
+                  <p className="text-xs text-trellis-text-muted leading-relaxed">{faq.a}</p>
+                </div>
+                {index < faqs.length - 1 && <div className="h-px bg-trellis-surface mx-6" />}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
+        {/* External Resources */}
+        <div className="pt-4">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-trellis-text-muted px-2 mb-4">Resources</h3>
+          <div className="space-y-3">
+            <button className="w-full flex items-center justify-between p-4 bg-trellis-surface rounded-2xl">
+              <span className="text-sm font-medium">Therapeutic Alliance Guide</span>
+              <ExternalLink size={16} className="text-trellis-text-muted" />
+            </button>
+            <button className="w-full flex items-center justify-between p-4 bg-trellis-surface rounded-2xl">
+              <span className="text-sm font-medium">Community Guidelines</span>
+              <ExternalLink size={16} className="text-trellis-text-muted" />
+            </button>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

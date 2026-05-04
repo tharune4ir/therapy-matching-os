@@ -2,12 +2,19 @@
 
 import { usePathname } from "next/navigation";
 import BottomNav from "./BottomNav";
+import AIAssistant from "./AIAssistant";
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isOnboarding = pathname.startsWith("/onboarding");
+  const isAdmin = pathname.startsWith("/admin");
+  const isProfile = pathname === "/match";
+  const isBooked = pathname.startsWith("/booked");
+  const isListens = pathname.startsWith("/listens");
 
-  if (isOnboarding) {
+  const hideNav = isOnboarding || isAdmin || isProfile || isBooked || isListens;
+
+  if (hideNav) {
     return <>{children}</>;
   }
 
@@ -17,6 +24,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
         {children}
       </main>
       <BottomNav />
+      {!hideNav && <AIAssistant />}
     </div>
   );
 }

@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 import { X, Check, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useTrellis } from '@/contexts/TrellisContext';
 
 export default function FeedbackPage() {
   const router = useRouter();
+  const { addFeedback } = useTrellis();
   const [submitted, setSubmitted] = useState(false);
   const [ratings, setRatings] = useState<Record<string, number>>({
     relationship: 0,
@@ -16,6 +18,12 @@ export default function FeedbackPage() {
 
   const handleRate = (category: string, value: number) => {
     setRatings(prev => ({ ...prev, [category]: value }));
+  };
+
+  const handleSubmit = () => {
+    const total = ratings.relationship + ratings.goals + ratings.approach;
+    addFeedback(total);
+    setSubmitted(true);
   };
 
   const isFormValid = ratings.relationship > 0 && ratings.goals > 0 && ratings.approach > 0;
@@ -142,7 +150,7 @@ export default function FeedbackPage() {
       <div className="fixed bottom-0 left-0 right-0 w-full max-w-md mx-auto bg-trellis-bg/95 backdrop-blur-md border-t border-trellis-surface p-6 pb-10 z-50">
         <button
           disabled={!isFormValid}
-          onClick={() => setSubmitted(true)}
+          onClick={handleSubmit}
           className={`w-full py-4 rounded-2xl text-lg font-semibold transition-all duration-300 ${
             isFormValid
               ? "bg-trellis-primary-deep text-white shadow-lg active:scale-[0.98]"

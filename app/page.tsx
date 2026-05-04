@@ -1,4 +1,3 @@
-import React from "react";
 import { Leaf, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
@@ -63,11 +62,6 @@ export default function LandingPage() {
         </Link>
       </div>
 
-      {/* Demo Autofill Button */}
-      <button className="fixed bottom-20 right-4 bg-trellis-primary-deep text-white px-5 py-3 rounded-full shadow-xl flex items-center gap-2 text-sm font-semibold z-50 hover:scale-105 active:scale-95 transition-all">
-        <span role="img" aria-label="bolt">⚡</span>
-        Demo
-      </button>
     </div>
   );
 }

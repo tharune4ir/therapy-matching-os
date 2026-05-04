@@ -20,6 +20,7 @@ export interface OnboardingData {
   format: string;
   budget: string;
   priorTherapy: string;
+  readiness?: string;
 }
 
 export interface Therapist {

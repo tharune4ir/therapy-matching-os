@@ -4,7 +4,67 @@ import React, { useState, useMemo } from "react";
 import { ChevronLeft, Zap, Leaf, X, FastForward } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { OnboardingData } from "@/types";
+import { UserProfile, ConcernTag } from "@/types/engine";
 import { meeraPersona } from "@/data/demo";
+
+function mapToEngineProfile(data: OnboardingData): UserProfile {
+  const concernMap: Record<string, ConcernTag> = {
+    "Workplace burnout": "5.3",
+    "Relationship anxiety": "4.1",
+    "Feeling down or depressed": "1.1",
+    "Navigating a life transition": "5.5",
+    "Just need someone to talk to": "5.5",
+    "Thoughts of self-harm or suicide": "1.2"
+  };
+  
+  const tags = data.concerns.map(c => concernMap[c]).filter(Boolean);
+  
+  let sev = 5;
+  if (data.severity.includes("overwhelmed")) sev = 8;
+  else if (data.severity.includes("affecting my daily life")) sev = 6;
+  
+  let budgetMax = 2500;
+  if (data.budget.includes("Under")) budgetMax = 1500;
+  else if (data.budget.includes("2,500+")) budgetMax = 4000;
+
+  return {
+    id: "live_user_1",
+    name: "You",
+    age: parseInt(data.age) || 25,
+    gender: data.gender === "Woman" ? "F" : data.gender === "Man" ? "M" : "NB",
+    pronouns: data.pronouns || "They/Them",
+    sexuality: "straight",
+    city: data.city || "Online",
+    occupation: "Professional",
+    industry: "Any",
+    languages: data.languages.length > 0 ? data.languages : ["English"],
+    primaryConcerns: tags.length > 0 ? tags : ["1.1"],
+    secondaryConcerns: [],
+    durationMonths: 6,
+    severity: sev,
+    familyStructure: "Unknown",
+    familyDynamics: data.familyDynamics,
+    religion: data.religion.includes("important") ? "Hindu" : "None",
+    religiousSalience: data.religion.includes("important") ? 8 : 2,
+    culturalSensitivities: [],
+    attachmentStyle: "Secure",
+    stageOfChange: "Preparation", // Feature 7 placeholder
+    cnip: {
+      directiveness: data.therapistStyle.includes("Direct") ? 8 : -5,
+      warmth: data.therapistStyle.includes("challenge") ? 2 : -8,
+      emotionalIntensity: 0,
+      pastOrientation: data.therapistFocus.includes("past") ? 8 : -5
+    },
+    therapistGenderPref: data.genderPreference === "Woman" ? "F" : data.genderPreference === "Man" ? "M" : (data.genderPreference.includes("Queer") ? "NB" : "Either"),
+    priorTherapy: data.priorTherapy.includes("First time") ? "First-timer" : "Experienced",
+    budgetMin: 500,
+    budgetMax: budgetMax,
+    formatPref: data.format.includes("Video") ? ["Video"] : data.format.includes("Phone") ? ["Phone"] : ["In-person"],
+    timePref: ["Flexible"],
+    dropoutTriggers: [],
+    stayTriggers: []
+  };
+}
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -26,6 +86,7 @@ export default function OnboardingPage() {
     format: "",
     budget: "",
     priorTherapy: "",
+    readiness: "",
   });
 
   const [loaderMessage, setLoaderMessage] = useState('Reading your story...');
@@ -37,13 +98,25 @@ export default function OnboardingPage() {
   }, [formData.concerns, router]);
 
   React.useEffect(() => {
-    if (currentStep === 12) {
+    if (currentStep === 13) {
+      // FEATURE 8: Route Pre-contemplators to Trellis Listens
+      if (formData.readiness === "I'm just looking for someone to listen right now.") {
+        const timer = setTimeout(() => {
+          router.push('/listens');
+        }, 2000);
+        return () => clearTimeout(timer);
+      }
+
+      const profile = mapToEngineProfile(formData);
+      sessionStorage.setItem('activeProfile', JSON.stringify(profile));
+      sessionStorage.setItem('onboardingComplete', 'true');
+
       const timer1 = setTimeout(() => {
         setLoaderMessage('Finding therapists who fit your style...');
       }, 1500);
 
       const timer2 = setTimeout(() => {
-        router.push('/match');
+        router.push('/matches');
       }, 3500);
 
       return () => {
@@ -51,9 +124,9 @@ export default function OnboardingPage() {
         clearTimeout(timer2);
       };
     }
-  }, [currentStep, router]);
+  }, [currentStep, formData, router]);
 
-  const totalStepsForProgress = 10;
+  const totalStepsForProgress = 11;
 
   const handleBack = () => {
     if (currentStep > 1) {
@@ -90,6 +163,8 @@ export default function OnboardingPage() {
       case 10:
         return formData.priorTherapy !== "";
       case 11:
+        return formData.readiness !== "";
+      case 12:
         return true;
       default:
         return true;
@@ -122,7 +197,7 @@ export default function OnboardingPage() {
       </div>
 
       {/* Header */}
-      {currentStep !== 12 && (
+      {currentStep !== 13 && (
         <header className="px-6 py-4">
           <div className="flex items-center justify-between mb-8">
             {/* Back Button */}
@@ -562,7 +637,40 @@ export default function OnboardingPage() {
             </div>
           )}
 
+          {/* FEATURE 7: Therapy Readiness Assessment */}
           {currentStep === 11 && (
+            <div className="space-y-6">
+              <div>
+                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                  How ready do you feel to dive into therapy right now?
+                </h2>
+                <p className="text-trellis-text-muted mt-3">
+                  Therapy takes work. It's okay if you just need space to vent first.
+                </p>
+              </div>
+              <div className="space-y-3">
+                {[
+                  "I'm just looking for someone to listen right now.",
+                  "I know I need to change, I just need help doing it.",
+                  "I'm already taking steps, I want guidance to keep going.",
+                ].map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => setSingleValue("readiness", option)}
+                    className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
+                      formData.readiness === option
+                        ? "border-trellis-primary bg-trellis-primary/10"
+                        : "border-transparent bg-trellis-surface"
+                    }`}
+                  >
+                    <span className="font-medium">{option}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {currentStep === 12 && (
             <div className="space-y-6">
               <div>
                 <h2 className="font-serif text-3xl text-trellis-text leading-tight">
@@ -607,7 +715,7 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {currentStep === 12 && (
+          {currentStep === 13 && (
             <div className="flex flex-col items-center justify-center h-[80vh] text-center px-6">
               <div className="w-24 h-24 rounded-full bg-trellis-primary/20 animate-pulse flex items-center justify-center">
                 <Leaf className="text-trellis-primary" size={40} fill="currentColor" />
@@ -621,18 +729,18 @@ export default function OnboardingPage() {
       </main>
 
       {/* Footer Action Bar */}
-      {currentStep !== 12 && (
+      {currentStep !== 13 && (
         <footer className="p-6 bg-trellis-bg/90 backdrop-blur-md border-t border-trellis-text/5">
           <button
-            disabled={!isStepValid || currentStep > 11}
+            disabled={!isStepValid || currentStep > 12}
             onClick={() => setCurrentStep(currentStep + 1)}
             className={`w-full py-4 rounded-2xl text-lg font-medium transition-all duration-300 ${
-              isStepValid && currentStep <= 11
+              isStepValid && currentStep <= 12
                 ? "bg-trellis-primary-deep text-white shadow-lg active:scale-[0.98]"
                 : "bg-trellis-surface text-trellis-text-muted cursor-not-allowed"
             }`}
           >
-            {currentStep === 11 ? "Find my match" : "Continue"}
+            {currentStep === 12 ? "Find my match" : "Continue"}
           </button>
         </footer>
       )}
