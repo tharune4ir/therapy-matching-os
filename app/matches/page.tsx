@@ -61,7 +61,7 @@ export default function MatchesPage() {
   const formattedTopMatch = formatTherapist(topMatch);
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-24 font-sans text-trellis-text">
+    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-32 font-sans text-trellis-text">
       {/* Header */}
       <header className="flex items-center px-6 py-6 sticky top-0 bg-trellis-bg/80 backdrop-blur-md z-40">
         <Link href="/match" className="p-2 -ml-2 text-trellis-text-muted hover:text-trellis-text transition-colors">

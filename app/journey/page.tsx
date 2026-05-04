@@ -15,7 +15,7 @@ export default function JourneyPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-24 font-sans text-trellis-text">
+    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-32 font-sans text-trellis-text">
       {/* Header */}
       <h1 className="font-serif text-3xl pt-12 px-6 mb-6 text-trellis-text leading-tight">
         Your Journey
