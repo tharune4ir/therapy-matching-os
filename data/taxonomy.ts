@@ -94,5 +94,6 @@ export const MODALITIES = [
   'CBT', 'ACT', 'DBT', 'Psychodynamic', 'Person-Centred', 'Humanistic',
   'EMDR', 'Somatic Experiencing', 'IFS', 'Narrative', 'Gestalt',
   'EFT', 'Gottman Method', 'MI', 'Schema Therapy', 'Mindfulness-Based',
-  'Pharmacotherapy'
+  'Solution-Focused Brief Therapy (SFBT)', 'Transactional Analysis (TA)',
+  'REBT', 'IPT', 'Art-Based Therapy', 'Pharmacotherapy'
 ];

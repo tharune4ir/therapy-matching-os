@@ -1,4 +1,5 @@
-import { UserProfile, TherapistProfile } from '../../types/engine';
+import { UserProfile, TherapistProfile, MatchResult, TopDimension } from '../../types/engine';
+import { generateWhyText, getDimensionName } from './explainMatch';
 
 export const DEFAULT_WEIGHTS = {
   W1: 18, W2: 9, W3: 9, W4: 6, W5: 5,
@@ -204,7 +205,7 @@ export function matchUserToTherapists(
   user: UserProfile, 
   therapistPool: TherapistProfile[], 
   weights: Record<string, number> = DEFAULT_WEIGHTS
-) {
+): MatchResult[] {
   let relaxLevel = 0;
   let candidates = therapistPool.filter(t => passesAllHardFilters(user, t, relaxLevel));
   
@@ -217,77 +218,71 @@ export function matchUserToTherapists(
   const scored = candidates.map(t => {
     const dims = calculateDimensionScores(user, t);
     
-    // SumProduct
+    // SumProduct and track contributions
     let totalScore = 0;
     let weightSum = 0;
+    const dimensionContributions: TopDimension[] = [];
+
     for (const [key, weight] of Object.entries(weights)) {
       if (key !== 'W28') {
-        totalScore += dims[key] * weight;
+        const score = dims[key] || 0;
+        const contribution = score * weight;
+        totalScore += contribution;
         weightSum += weight;
+
+        dimensionContributions.push({
+          dimensionId: key,
+          dimensionName: getDimensionName(key),
+          contribution: contribution / 100 // Normalized contribution
+        });
       }
     }
     
     let score = totalScore / weightSum;
     
-    // Apply W28 Anti-match penalty (capped at 25 points)
+    // Apply W28 Anti-match penalty
     if (dims.W28 > 0) {
       score -= 25;
     }
 
+    // Add synthesized dimensions if they were critical
+    if (t.qacpCertified) {
+      dimensionContributions.push({ 
+        dimensionId: "QACP", 
+        dimensionName: getDimensionName("QACP"), 
+        contribution: 15 
+      });
+    }
+    if (t.traumaSpecialization) {
+      dimensionContributions.push({ 
+        dimensionId: "TRAUMA", 
+        dimensionName: getDimensionName("TRAUMA"), 
+        contribution: 15 
+      });
+    }
+
+    const topDimensions = dimensionContributions
+      .sort((a, b) => b.contribution - a.contribution)
+      .slice(0, 5);
+
     return {
       therapist: t,
       matchScore: Math.max(0, Math.round(score)),
-      dimensions: dims
+      dimensions: dims,
+      topDimensions,
+      whyText: "" // filled below
     };
   });
 
   const ranked = scored.sort((a, b) => b.matchScore - a.matchScore);
-  const top3 = ranked.slice(0, 3).map(match => {
-    return {
-      ...match,
-      whyText: generateWhyText(user, match.therapist, match.dimensions)
-    }
-  });
+  const top3 = ranked.slice(0, 3).map(match => ({
+    ...match,
+    whyText: generateWhyText(user, match.therapist, match.topDimensions)
+  }));
 
   return top3;
 }
 
-function generateWhyText(user: UserProfile, t: TherapistProfile, dims: Record<string, number>): string {
-  // Sort dimensions by their weighted contribution
-  const contributors = Object.entries(dims)
-    .filter(([key]) => key !== 'W28')
-    .map(([key, score]) => ({ key, contribution: score * DEFAULT_WEIGHTS[key as keyof typeof DEFAULT_WEIGHTS] }))
-    .sort((a, b) => b.contribution - a.contribution);
-
-  const topKeys = contributors.slice(0, 3).map(c => c.key);
-  
-  let reasons: string[] = [];
-
-  if (topKeys.includes('W1')) {
-    reasons.push(`${t.name.split(' ')[0]} specializes in the exact concerns you mentioned.`);
-  }
-  if (topKeys.includes('W2')) {
-    reasons.push(`Their style matches your preference for ${user.cnip.directiveness > 0 ? 'directive' : 'collaborative'} sessions.`);
-  }
-  if (topKeys.includes('W3')) {
-    reasons.push(`They offer the warmth-vs-challenge balance you said works for you.`);
-  }
-  if (topKeys.includes('W6')) {
-    reasons.push(`Their approach fits where you are right now in your journey.`);
-  }
-  if (topKeys.includes('W9')) {
-    reasons.push(`They speak ${user.languages[0]}, enabling deep culturally-nuanced communication.`);
-  }
-  if (topKeys.includes('W10')) {
-    reasons.push(`They have deep experience with your specific cultural context.`);
-  }
-
-  if (reasons.length === 0) {
-    reasons.push(`They align strongly with your communication preferences and structural needs.`);
-  }
-
-  return reasons.join(' ');
-}
 
 // --- LAYER 3: FEEDBACK LEARNING (ORS + SRS) ---
 export function updateWeightsFromFeedback(

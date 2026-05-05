@@ -214,7 +214,7 @@ export const THERAPISTS: TherapistProfile[] = [
     credentials: 'MA Counselling Psych (Calcutta Univ)',
     rciNumber: '',
     yearsExperience: 4,
-    modalities: ['CBT', 'Schema Therapy', 'Mindfulness-Based'],
+    modalities: ['CBT', 'Schema Therapy', 'Mindfulness-Based', 'Solution-Focused Brief Therapy (SFBT)'],
     specializations: ['1.1', '2.1', '11.4', '4.7'], // GAD, depression, self-esteem, family-of-origin
     languages: ['English', 'Bengali', 'Hindi'],
     cnip: { directiveness: 6, emotionalIntensity: 4, pastOrientation: 0, warmth: 3 /* warm(-3) */ },
@@ -243,7 +243,7 @@ export const THERAPISTS: TherapistProfile[] = [
     credentials: 'M.Phil Clinical (Delhi Univ)',
     rciNumber: 'A-45678',
     yearsExperience: 18,
-    modalities: ['Psychodynamic'],
+    modalities: ['Psychodynamic', 'Gestalt'],
     specializations: ['5.4', '6.1', '4.1'], // existential issues, mid-life, high-achievers
     languages: ['English', 'Hindi', 'Punjabi'],
     cnip: { directiveness: -9, emotionalIntensity: 9, pastOrientation: -10, warmth: -2 },
@@ -301,7 +301,7 @@ export const THERAPISTS: TherapistProfile[] = [
     credentials: 'MA Counselling + DBT-Linehan',
     rciNumber: '',
     yearsExperience: 9,
-    modalities: ['DBT', 'ACT', 'Mindfulness-Based'],
+    modalities: ['DBT', 'ACT', 'Mindfulness-Based', 'IPT'],
     specializations: ['11.1', '10.2', '2.1'], // emotion-dysregulation, BPD, self-harm, eating
     languages: ['English', 'Hindi', 'Marathi', 'Malayalam'],
     cnip: { directiveness: 6, emotionalIntensity: 8, pastOrientation: -6, warmth: 0 },

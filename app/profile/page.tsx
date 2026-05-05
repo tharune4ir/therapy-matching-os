@@ -53,29 +53,29 @@ export default function ProfilePage() {
           <h3 className="text-sm font-bold uppercase tracking-widest text-trellis-text-muted px-2">Account Settings</h3>
           
           <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-trellis-primary/5">
-            <button className="w-full flex items-center justify-between p-5 hover:bg-trellis-surface transition-colors">
+            <Link href="/preferences" className="w-full flex items-center justify-between p-5 hover:bg-trellis-surface transition-colors">
               <div className="flex items-center gap-4">
                 <Settings size={20} className="text-trellis-text-muted" />
                 <span className="font-medium text-sm">Preferences</span>
               </div>
               <ChevronRight size={18} className="text-trellis-text-muted" />
-            </button>
+            </Link>
             <div className="h-px bg-trellis-surface mx-5" />
-            <button className="w-full flex items-center justify-between p-5 hover:bg-trellis-surface transition-colors">
+            <Link href="/privacy" className="w-full flex items-center justify-between p-5 hover:bg-trellis-surface transition-colors">
               <div className="flex items-center gap-4">
                 <Shield size={20} className="text-trellis-text-muted" />
                 <span className="font-medium text-sm">Privacy & Security</span>
               </div>
               <ChevronRight size={18} className="text-trellis-text-muted" />
-            </button>
+            </Link>
             <div className="h-px bg-trellis-surface mx-5" />
-            <button className="w-full flex items-center justify-between p-5 hover:bg-trellis-surface transition-colors">
+            <Link href="/notifications" className="w-full flex items-center justify-between p-5 hover:bg-trellis-surface transition-colors">
               <div className="flex items-center gap-4">
                 <Bell size={20} className="text-trellis-text-muted" />
                 <span className="font-medium text-sm">Notifications</span>
               </div>
               <ChevronRight size={18} className="text-trellis-text-muted" />
-            </button>
+            </Link>
           </div>
         </div>
 

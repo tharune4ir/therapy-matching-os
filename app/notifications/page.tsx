@@ -1,0 +1,32 @@
+"use client";
+
+import React from 'react';
+import { ChevronLeft, Bell, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+
+export default function NotificationsPage() {
+  return (
+    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg flex flex-col font-sans text-trellis-text">
+      <header className="px-6 py-6 flex items-center gap-4">
+        <Link href="/profile" className="p-2 -ml-2 text-trellis-text-muted hover:text-trellis-text transition-colors">
+          <ChevronLeft size={24} />
+        </Link>
+        <h1 className="font-serif text-xl">Notifications</h1>
+      </header>
+
+      <main className="flex-grow flex flex-col items-center justify-center p-8 text-center animate-breathe">
+        <div className="w-24 h-24 bg-trellis-surface rounded-full flex items-center justify-center mb-6 shadow-sm border border-trellis-primary/5">
+          <Bell size={40} className="text-trellis-primary" />
+        </div>
+        <h2 className="font-serif text-2xl mb-3 text-trellis-text">Stay Connected</h2>
+        <p className="text-sm text-trellis-text-muted leading-relaxed mb-8 max-w-xs">
+          Manage your session reminders, reflection prompts, and clinician messages.
+        </p>
+        <div className="bg-trellis-primary/5 px-4 py-2 rounded-full flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-trellis-primary-deep">
+          <Sparkles size={12} />
+          Coming soon in the full release
+        </div>
+      </main>
+    </div>
+  );
+}

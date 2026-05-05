@@ -8,6 +8,23 @@ interface FeedbackEntry {
   date: string;
 }
 
+interface ORSEntry {
+  personal: number;
+  interpersonal: number;
+  social: number;
+  overall: number;
+  total: number;
+  date: string;
+}
+
+interface ReflectionEntry {
+  id: string;
+  promptId: number;
+  promptText: string;
+  response: string;
+  date: string;
+}
+
 interface TrellisContextType {
   activeProfile: UserProfile | null;
   setActiveProfile: (profile: UserProfile | null) => void;
@@ -15,6 +32,10 @@ interface TrellisContextType {
   addMood: (mood: string) => void;
   feedbackLog: FeedbackEntry[];
   addFeedback: (srsTotal: number) => void;
+  orsHistory: ORSEntry[];
+  addORS: (entry: Omit<ORSEntry, 'date'>) => void;
+  reflectionHistory: ReflectionEntry[];
+  addReflection: (entry: Omit<ReflectionEntry, 'id' | 'date'>) => void;
   currentSrsMean: number;
 }
 
@@ -27,7 +48,13 @@ export function TrellisProvider({ children }: { children: React.ReactNode }) {
     { srsTotal: 14, date: "Wk 1" },
     { srsTotal: 15, date: "Wk 2" },
     { srsTotal: 14, date: "Wk 3" },
-  ]); // Seeded with some healthy prior data for the rupture demo
+  ]);
+  const [orsHistory, setOrsHistory] = useState<ORSEntry[]>([
+    { personal: 4, interpersonal: 5, social: 4, overall: 4, total: 17, date: "Wk 1" },
+    { personal: 5, interpersonal: 6, social: 5, overall: 5, total: 21, date: "Wk 2" },
+    { personal: 6, interpersonal: 7, social: 6, overall: 6, total: 25, date: "Wk 3" },
+  ]);
+  const [reflectionHistory, setReflectionHistory] = useState<ReflectionEntry[]>([]);
 
   useEffect(() => {
     // Rehydrate on mount
@@ -45,6 +72,12 @@ export function TrellisProvider({ children }: { children: React.ReactNode }) {
     
     const storedFeedback = sessionStorage.getItem('feedbackLog');
     if (storedFeedback) setFeedbackLog(JSON.parse(storedFeedback));
+
+    const storedORS = sessionStorage.getItem('orsHistory');
+    if (storedORS) setOrsHistory(JSON.parse(storedORS));
+
+    const storedReflections = sessionStorage.getItem('reflectionHistory');
+    if (storedReflections) setReflectionHistory(JSON.parse(storedReflections));
   }, []);
 
   const setActiveProfile = (profile: UserProfile | null) => {
@@ -68,6 +101,24 @@ export function TrellisProvider({ children }: { children: React.ReactNode }) {
     sessionStorage.setItem('feedbackLog', JSON.stringify(newFeedback));
   };
 
+  const addORS = (entry: Omit<ORSEntry, 'date'>) => {
+    const newEntry = { ...entry, date: new Date().toISOString() };
+    const newHistory = [...orsHistory, newEntry];
+    setOrsHistory(newHistory);
+    sessionStorage.setItem('orsHistory', JSON.stringify(newHistory));
+  };
+
+  const addReflection = (entry: Omit<ReflectionEntry, 'id' | 'date'>) => {
+    const newEntry = {
+      ...entry,
+      id: Math.random().toString(36).substring(7),
+      date: new Date().toISOString()
+    };
+    const newHistory = [newEntry, ...reflectionHistory];
+    setReflectionHistory(newHistory);
+    sessionStorage.setItem('reflectionHistory', JSON.stringify(newHistory));
+  };
+
   // Convert raw /15 SRS totals to standard 5.0 scale for the dashboard
   const currentSrsMean = feedbackLog.length > 0 
     ? (feedbackLog.reduce((acc, curr) => acc + curr.srsTotal, 0) / feedbackLog.length) / 3 
@@ -81,6 +132,10 @@ export function TrellisProvider({ children }: { children: React.ReactNode }) {
       addMood,
       feedbackLog,
       addFeedback,
+      orsHistory,
+      addORS,
+      reflectionHistory,
+      addReflection,
       currentSrsMean
     }}>
       {children}

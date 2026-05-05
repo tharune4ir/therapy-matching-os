@@ -84,3 +84,18 @@ export interface TherapistProfile {
   bestWith: string[];
   strugglesWith: ConcernTag[]; // anti-match variables
 }
+
+export interface TopDimension {
+  dimensionId: string;
+  dimensionName: string;
+  contribution: number;
+}
+
+export interface MatchResult {
+  therapist: TherapistProfile;
+  matchScore: number;
+  dimensions: Record<string, number>;
+  topDimensions: TopDimension[];
+  whyText: string;
+}
+

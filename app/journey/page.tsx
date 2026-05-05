@@ -1,18 +1,38 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Calendar, TrendingUp, AlertCircle, ArrowRight, Video, PenTool, Smile, Frown, Meh } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Calendar, TrendingUp, AlertCircle, ArrowRight, Video, PenTool, Smile, Frown, Meh, Heart } from 'lucide-react';
 import Link from 'next/link';
 
 import { useTrellis } from '@/contexts/TrellisContext';
 
 export default function JourneyPage() {
-  const { moodHistory, addMood, feedbackLog } = useTrellis();
+  const { moodHistory, addMood, feedbackLog, orsHistory } = useTrellis();
   const currentMood = moodHistory.length > 0 ? moodHistory[moodHistory.length - 1].mood : null;
 
   const handleMoodSelect = (mood: string) => {
     addMood(mood);
   };
+
+  // Calculate Trend
+  const trend = useMemo(() => {
+    if (orsHistory.length < 2) return { label: "Establishing baseline", color: "text-trellis-text-muted", icon: null };
+    const latest = orsHistory[orsHistory.length - 1].total;
+    const previous = orsHistory[orsHistory.length - 2].total;
+    const diff = latest - previous;
+    
+    if (diff >= 3) return { label: "Trending upward", color: "text-trellis-primary", icon: <TrendingUp size={20} className="text-trellis-primary" /> };
+    if (diff <= -3) return { label: "Trending downward", color: "text-orange-500", icon: <TrendingUp size={20} className="text-orange-500 rotate-180" /> };
+    return { label: "Holding steady", color: "text-trellis-text-muted", icon: <div className="w-5 h-0.5 bg-trellis-text-muted rounded-full" /> };
+  }, [orsHistory]);
+
+  // Check if ORS is needed today (simple check: if last ORS date is not today)
+  const needsORS = useMemo(() => {
+    if (orsHistory.length === 0) return true;
+    const lastDate = new Date(orsHistory[orsHistory.length - 1].date).toDateString();
+    const today = new Date().toDateString();
+    return lastDate !== today;
+  }, [orsHistory]);
 
   return (
     <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-32 font-sans text-trellis-text">
@@ -40,7 +60,29 @@ export default function JourneyPage() {
         </div>
       </div>
 
-      {/* Action Required Card */}
+      {/* ORS Check-in Card (Proactive) */}
+      {needsORS && (
+        <div className="mx-6 mb-6 bg-trellis-primary/5 rounded-[2rem] p-6 border border-trellis-primary/20 relative overflow-hidden animate-breathe">
+          <div className="flex items-center gap-2 mb-3">
+            <TrendingUp size={20} className="text-trellis-primary" />
+            <span className="text-[10px] uppercase tracking-widest font-bold text-trellis-primary">Before your session</span>
+          </div>
+          
+          <p className="text-sm text-trellis-text leading-relaxed">
+            Take 60 seconds to check in with yourself. This helps your therapist prepare for your session today.
+          </p>
+          
+          <Link 
+            href="/checkin" 
+            className="bg-trellis-primary-deep text-white w-full py-4 rounded-2xl mt-6 flex justify-center items-center gap-2 font-semibold text-sm shadow-md active:scale-[0.98] transition-all"
+          >
+            Check in now
+            <ArrowRight size={18} />
+          </Link>
+        </div>
+      )}
+
+      {/* SRS Feedback Card */}
       <div className="mx-6 mb-10 bg-white rounded-[2rem] p-6 shadow-sm border border-trellis-accent/20 relative overflow-hidden">
         {/* Decorative corner accent */}
         <div className="absolute top-0 right-0 w-24 h-24 bg-trellis-accent/5 rounded-full -mr-12 -mt-12"></div>
@@ -51,7 +93,7 @@ export default function JourneyPage() {
         </div>
         
         <p className="text-sm text-trellis-text leading-relaxed">
-          Take 60 seconds to log how your first session with <span className="font-bold">Dr. Priya Menon</span>{" "}went. This helps us ensure you&apos;re on the right track.
+          Log how your recent session with <span className="font-bold">Dr. Priya Menon</span>{" "}went. This ensures your matches stay precise.
         </p>
         
         <Link 
@@ -100,33 +142,48 @@ export default function JourneyPage() {
         </button>
       </div>
 
-      {/* Wellbeing Pulse (Mock Chart) */}
+      {/* Daily Reflection Card (New) */}
+      <div className="mx-6 mb-10 bg-trellis-primary/5 rounded-[2rem] p-6 border border-trellis-primary/20 relative overflow-hidden group hover:bg-trellis-primary/10 transition-all cursor-pointer">
+        <Link href="/reflections" className="block">
+          <div className="flex items-center gap-2 mb-3">
+            <Heart size={20} className="text-trellis-primary" />
+            <span className="text-[10px] uppercase tracking-widest font-bold text-trellis-primary">Daily Reflection</span>
+          </div>
+          <p className="font-serif text-lg leading-tight mb-3">Today&apos;s prompt is waiting for you.</p>
+          <div className="flex items-center gap-2 text-xs font-bold text-trellis-primary-deep">
+            <span>Pause for a moment</span>
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          </div>
+        </Link>
+      </div>
+
+      {/* Wellbeing Pulse (Outcome Chart) */}
       <div className="space-y-4">
         <h2 className="px-6 text-xl font-serif text-trellis-text">Wellbeing Pulse</h2>
         <div className="mx-6 bg-trellis-surface rounded-[2rem] p-6 border border-trellis-primary/5">
           <div className="flex items-center justify-between mb-6">
             <div>
               <p className="text-xs text-trellis-text-muted font-bold uppercase tracking-wider">Outcome (ORS)</p>
-              <p className="text-[11px] text-trellis-text-muted mt-0.5">Your trajectory is upward</p>
+              <p className={`text-[11px] mt-0.5 font-medium ${trend.color}`}>{trend.label}</p>
             </div>
-            <div className="p-2 bg-trellis-primary/10 rounded-xl">
-              <TrendingUp size={20} className="text-trellis-primary" />
+            <div className="p-2 bg-white rounded-xl shadow-sm">
+              {trend.icon}
             </div>
           </div>
 
           <div className="mt-8">
             {/* The Bars */}
             <div className="h-32 flex items-end justify-between gap-4 px-2">
-              {feedbackLog.map((log, index) => {
-                const percentage = (log.srsTotal / 15) * 100;
-                const isLast = index === feedbackLog.length - 1;
+              {orsHistory.slice(-5).map((entry, index) => {
+                const percentage = (entry.total / 40) * 100;
+                const isLast = index === Math.min(orsHistory.length, 5) - 1;
                 return (
-                  <div key={index} className="w-full flex justify-center h-full items-end">
+                  <div key={index} className="w-full flex flex-col justify-end h-full items-center gap-2">
                     <div 
-                      className={`w-full rounded-t-md relative transition-all duration-500 ease-in-out ${isLast ? 'bg-trellis-primary-deep' : 'bg-trellis-primary/40'}`} 
+                      className={`w-full rounded-t-lg relative transition-all duration-700 ease-out ${isLast ? 'bg-trellis-primary-deep shadow-lg' : 'bg-trellis-primary/30'}`} 
                       style={{ height: `${percentage}%` }}
                     >
-                      {isLast && <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-trellis-accent"></div>}
+                      {isLast && <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-trellis-accent border-2 border-white shadow-sm"></div>}
                     </div>
                   </div>
                 );
@@ -134,10 +191,10 @@ export default function JourneyPage() {
             </div>
 
             {/* The X-Axis Labels */}
-            <div className="flex justify-between mt-3 text-[10px] font-medium text-trellis-text-muted px-2 uppercase tracking-wider">
-              {feedbackLog.map((log, index) => (
-                <span key={index} className={index === feedbackLog.length - 1 ? "text-trellis-primary-deep font-bold" : ""}>
-                  {log.date}
+            <div className="flex justify-between mt-4 text-[10px] font-bold text-trellis-text-muted px-2 uppercase tracking-tighter">
+              {orsHistory.slice(-5).map((entry, index) => (
+                <span key={index} className={index === Math.min(orsHistory.length, 5) - 1 ? "text-trellis-primary-deep" : ""}>
+                  {entry.date.length > 5 ? entry.date.substring(0, 5) : entry.date}
                 </span>
               ))}
             </div>

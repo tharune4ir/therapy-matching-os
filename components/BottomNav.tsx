@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { House, TrendingUp, User, Heart, Menu, X, Database } from "lucide-react";
+import { House, TrendingUp, User, Heart, Menu, X, Database, Settings, PenTool } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -79,6 +79,36 @@ const BottomNav = () => {
                 <div>
                   <p className="font-semibold text-trellis-text">Help & Support</p>
                   <p className="text-xs text-trellis-text-muted">FAQ and crisis resources</p>
+                </div>
+              </Link>
+
+              <Link href="/checkin" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
+                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+                  <TrendingUp size={20} />
+                </div>
+                <div>
+                  <p className="font-semibold text-trellis-text">Pre-session Check-in</p>
+                  <p className="text-xs text-trellis-text-muted">Log your current ORS well-being</p>
+                </div>
+              </Link>
+
+              <Link href="/reflections" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
+                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+                  <PenTool size={20} />
+                </div>
+                <div>
+                  <p className="font-semibold text-trellis-text">Daily Reflections</p>
+                  <p className="text-xs text-trellis-text-muted">Pause and reflect on today</p>
+                </div>
+              </Link>
+
+              <Link href="/preferences" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
+                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+                  <Settings size={20} />
+                </div>
+                <div>
+                  <p className="font-semibold text-trellis-text">Therapy Preferences</p>
+                  <p className="text-xs text-trellis-text-muted">View your matching profile</p>
                 </div>
               </Link>
 

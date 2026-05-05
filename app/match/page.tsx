@@ -3,6 +3,8 @@
 import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { THERAPISTS } from '@/data/therapists';
+import { USERS } from '@/data/users';
+import { matchUserToTherapists } from '@/lib/engine/matching';
 import { ChevronLeft, Star, Video, Calendar, Play } from 'lucide-react';
 import Link from 'next/link';
 
@@ -10,8 +12,23 @@ function MatchProfileContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
   
-  // Find therapist or fallback to T1
-  const tProfile = THERAPISTS.find(t => t.id === id) || THERAPISTS[0];
+  // Get active user to run engine
+  const [activeUser, setActiveUser] = React.useState<any>(USERS[0]);
+  
+  React.useEffect(() => {
+    const stored = sessionStorage.getItem('activeProfile');
+    if (stored) {
+      setActiveUser(JSON.parse(stored));
+    }
+  }, []);
+
+  // Run engine to get dynamic whyText and score
+  const matchResult = React.useMemo(() => {
+    const matches = matchUserToTherapists(activeUser, THERAPISTS);
+    return matches.find(m => m.therapist.id === id) || matches[0];
+  }, [activeUser, id]);
+
+  const tProfile = matchResult.therapist;
   
   // Format for UI
   const topMatch = {
@@ -20,12 +37,12 @@ function MatchProfileContent() {
     title: tProfile.credentials.split(' ')[0] === 'MBBS,' ? 'Psychiatrist' : (tProfile.rciNumber ? 'Clinical Psychologist' : 'Counselling Psychologist'),
     credentials: tProfile.rciNumber ? 'RCI Registered' : 'MA Psychology',
     experience: `${tProfile.yearsExperience} years exp.`,
-    matchScore: 92, // Mocked for direct profile view without user context
+    matchScore: matchResult.matchScore,
     imageInitials: tProfile.name.replace('Dr. ', '').split(' ').map(n => n[0]).join('').substring(0, 2),
     tags: [tProfile.modalities[0], ...tProfile.bestWith].slice(0, 3),
     languages: tProfile.languages,
     about: tProfile.about,
-    whyWeMatchedYou: "Based on our 28-variable algorithm, this therapist strongly aligns with your clinical needs and communication preferences.",
+    whyWeMatchedYou: matchResult.whyText,
     fee: `₹${tProfile.fee} / session`,
     availability: tProfile.availability[0],
     formats: tProfile.formats

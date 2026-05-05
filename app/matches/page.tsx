@@ -161,7 +161,7 @@ export default function MatchesPage() {
                     {formatted.matchScore}%
                   </div>
                 </div>
-                <div className="text-[10px] text-trellis-text-muted italic border-l-2 border-trellis-primary/30 pl-2">
+                <div className="text-[10px] text-trellis-text-muted italic border-l-2 border-trellis-primary/30 pl-2 line-clamp-2">
                   {formatted.whyText}
                 </div>
               </div>
