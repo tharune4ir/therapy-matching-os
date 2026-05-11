@@ -1,6 +1,6 @@
 # Trellis | High-Fidelity Therapy Matching Prototype
 
-**Trellis** is a research-backed, mobile-first therapy matching platform designed to solve the "first-session mismatch" problem. Built for **Elfina Health**, it utilizes a multi-layered compatibility engine to pair users with therapists based on the **therapeutic alliance** — the single strongest predictor of clinical success.
+**Trellis** is a research-backed, mobile-first therapy matching platform designed to solve the "first-session mismatch" problem. It utilizes a multi-layered compatibility engine to pair users with therapists based on the **therapeutic alliance** — the single strongest predictor of clinical success.
 
 ---
 
@@ -64,4 +64,3 @@ The prototype is grounded in the following research frameworks:
 ---
 
 **Built by [Tharun Gajula](https://github.com/tharun-gajula)**  
-*Concept prototype for Elfina Health*

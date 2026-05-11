@@ -18,7 +18,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Trellis | Find the right therapist, beautifully.",
-  description: "Trellis matches you with a therapist who actually gets you. A clinical-grade matching prototype built for Elfina Health.",
+  description: "Trellis matches you with a therapist who actually gets you. A clinical-grade matching prototype.",
   openGraph: {
     title: "Trellis | Therapy Matching Prototype",
     description: "A research-backed therapy matching engine optimizing for the therapeutic alliance.",

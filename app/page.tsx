@@ -55,7 +55,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <div className="text-xs text-trellis-text-muted mt-12 pb-24 text-center">
-        <p>Built for <span className="font-semibold text-trellis-primary-deep">Elfina Health</span></p>
+
         <p className="mt-1">By Tharun Gajula</p>
         <Link href="/compare" className="block text-trellis-primary-deep font-bold text-sm mt-8 hover:underline transition-all">
           View the clinical research →
