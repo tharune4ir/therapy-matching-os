@@ -206,4 +206,59 @@ Below are the specific factors used:
 - **Synthesized Traits**: Includes certification (QACP) and specialized training (EMDR/IFS) in the justification text even if they were "hard filters."
 
 ---
+
+## 7. Research Benchmarks & Clinical Anchors (Phase 2 Data)
+
+### 7.1 The Science of Matching
+- **Preference-Matching Leverage**: Matched clients show a `d=0.28` better outcome and ~50% lower dropout rate (Swift et al.).
+- **Alliance > Modality**: Alliance correlates `r=0.28` with outcomes (Flückiger, 2018), significantly more than the specific modality chosen.
+- **Language Priority**: Language-matched outcomes are 2x as effective as non-matched in minority populations.
+
+### 7.2 Indian Market Realities (2024 Context)
+- **Supply Gap**: ~3,890 RCI-licensed clinical psychologists for 1.4B people.
+- **Burnout Crisis**: 59% of Indian employees report burnout (McKinsey, 2023).
+- **Nuanced Stressors**: Joint-family enmeshment, NRI identity strain, caste-based microaggressions, and "Log kya kahenge" (social evaluation) anxiety are primary weighted variables.
+
+---
+
+## 8. Seed Data Architecture (The 22 MECE User Personas)
+To validate the algorithm, the system is populated with 22 Mutually Exclusive, Collectively Exhaustive (MECE) personas.
+
+### Persona Schema (TypeScript Model):
+```typescript
+interface UserProfile {
+  id: string;
+  attachmentStyle: "Secure" | "Anxious" | "Avoidant" | "Fearful";
+  stageOfChange: "Pre-contemplation" | "Contemplation" | "Preparation" | "Action";
+  cnip: { 
+    directiveness: number; // -15 to +15
+    emotionalIntensity: number;
+    pastOrientation: number;
+    warmth: number;
+  };
+  culturalSensitivities: string[]; // ["Joint Family", "Caste Aware", "Queer-Affirmative"]
+  dropoutTriggers: string[];
+}
+```
+
+### Key Archetypes:
+1. **The Burnout Professional (Meera)**: High-performance, anxious-preoccupied, needs warm-but-structured boundary work.
+2. **The Skeptical Action-Taker (Arjun)**: Directive preference (+7), dismissive-avoidant, needs logic-heavy, homework-driven CBT.
+3. **The Identity Seeker (Rohan)**: Queer/Closeted in a joint-family setting, requires QACP-certified safety gates and minority-stress literacy.
+
+---
+
+## 9. Product Roadmap (Phase 2 & 3)
+
+### Phase 2: Engagement Loops (Short-term)
+- **Therapist Intro Videos**: 30s-60s clips to build pre-session warmth (predicts alliance).
+- **Between-Session Journaling**: Integrated prompts linked to the clinical taxonomy.
+- **Rupture Detection**: AI-driven analysis of SRS score drops (>= 1.5 SD) to flag cases for supervision.
+
+### Phase 3: Systemic Scale (Long-term)
+- **Couples/Family Branch**: Parallel matching algorithm for multi-user family units.
+- **Psychiatric Integration**: Medical/prescription tracking for psychiatrists with MCI registration.
+- **Supervision Portal**: Dashboard for clinical supervisors to monitor therapist retention and bond metrics.
+
+---
 *THERAPY_MATCHING_OS: Clinical Precision. Human Warmth.*

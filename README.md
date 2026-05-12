@@ -1,66 +1,32 @@
-# Therapy Matching OS | High-Fidelity Therapy Matching Prototype
+# Therapy Matching OS | AI Product Concept Prototype
 
-**Therapy Matching OS** is a research-backed, mobile-first therapy matching platform designed to solve the "first-session mismatch" problem. It utilizes a multi-layered compatibility engine to pair users with therapists based on the **therapeutic alliance** — the single strongest predictor of clinical success.
+**Therapy Matching OS** is an AI-native concept prototype exploring multi-layer compatibility algorithms for therapy-client matching. This project is built to demonstrate complex product mechanics, ethical retention loops, and the intersection of clinical research with user experience design.
 
----
-
-## 🌿 Core Features
-
-- **12-Step Guided Onboarding**: A conversational, clinical-grade intake flow that captures demographics, cultural nuances, and communication preferences.
-- **Alliance-First Matching Engine**: A weighted algorithm that optimizes for the "bond, tasks, and goals" (Bordin, 1979) between client and therapist.
-- **Journey Dashboard**: A personal hub for tracking sessions and visualizing progress via the **Wellbeing Pulse** (ORS/SRS integration).
-- **Crisis Intervention Flow**: An intelligent safety monitor that redirects high-risk users to immediate localized support (iCall, Tele-MANAS).
-- **Clinical Presentation Deck**: An interactive, state-driven slide deck (/compare) that explains the science behind the algorithm to stakeholders.
-- **Support Hub & FAQ**: A dedicated center for user assistance and algorithmic transparency.
+> [!NOTE]
+> This is a **Product Design Portfolio Asset** built by a Zero-to-One PM to demonstrate technical depth in matching algorithms and mental health tech. It is not a live commercial service.
 
 ---
 
-## 🎨 Design Philosophy
+## 🌿 The Hook
+Most therapy directories optimize for availability or price. Therapy Matching OS optimizes for the **Therapeutic Alliance** — the single strongest predictor of clinical success. It uses a 58-point data model to move beyond "search and filter" into "intelligent pairing."
 
-Therapy Matching OS utilizes a custom design system centered on **Linen Cream** (#F7F3ED) and **Sage Green** (#7A9E7E). 
+## ⚙️ The Engine: How it Works
+The prototype uses a 3-layer matching logic to pair users with their ideal therapist:
 
-- **Typography**: `Fraunces` (Serif) for emotional resonance and `Inter` (Sans) for clarity.
-- **Aesthetic**: Minimalist, warm, and clinical-grade.
-- **Animations**: Subtle breathing effects (`animate-breathe`) to reduce user anxiety during high-friction moments.
+1. **Layer 1: Hard Filters**: Language, QACP-certification (for queer-affirmative care), and trauma specialization act as binary gates to ensure baseline safety and comfort.
+2. **Layer 2: Weighted Compatibility**: A `SumProduct` algorithm scores matches across the **C-NIP (Complementary-Negative Interpersonal Pattern)** framework, matching clients with therapists whose personality style complements their emotional needs.
+3. **Layer 3: Feedback Learning Loop**: Integrates **ORS (Outcome Rating Scale)** and **SRS (Session Rating Scale)** to track real-time progress and alliance ruptures, identifying high-performing clinicians.
 
----
+## 🛠️ Tech Stack
+- **Frontend**: Next.js (App Router), React, Tailwind CSS
+- **State**: React Context (Rehydrated with SessionStorage)
+- **Design System**: A custom meditative design system utilizing `Fraunces` for clinical authority and `Sage Green` for growth.
+- **Deployment**: Vercel
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+
-- npm / yarn / pnpm
-
-### Installation
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-4. Open [http://localhost:3000](http://localhost:3000) to view the prototype.
+## 🔗 Important Links
+- **Live Deployment**: [Vercel Link (Insert Link Here)]
+- **Deep Architecture**: For a deep dive into the clinical research, data schemas, and the 22 MECE user personas, see [PROJECT_MASTER.md](file:///d:/000_before%20portfolio_10526/Portfolio/therapy-matching-os/therapy-matching-os/PROJECT_MASTER.md).
+- **Foundational Research**: See the [Research Master Document](file:///d:/000_before%20portfolio_10526/Portfolio/therapy-matching-os/therapy-matching-os/PROJECT%20-%20Therapy-Client%20Matching%20Research%20Master%20Document.md) for the underlying literature review.
 
 ---
-
-## 📊 Technical Stack
-
-- **Framework**: [Next.js 14 (App Router)](https://nextjs.org/)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide-React
-- **Deployment**: Optimized for Vercel
-
----
-
-## 📖 Research & Documentation
-The prototype is grounded in the following research frameworks:
-- **C-NIP (Cooper-Norcross Inventory of Preferences)**: For matching communication styles.
-- **FIT (Feedback-Informed Treatment)**: For real-time fit adjustment using ORS/SRS scales.
-- **Alliance Science**: Drawing from meta-analyses by Flückiger et al. (2018).
-
----
-
-**Built by [Tharun Gajula](https://github.com/tharun-gajula)**  
+*Built by Tharun Gajula — Zero-to-One AI Product Manager*
