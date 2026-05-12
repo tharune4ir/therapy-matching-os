@@ -99,7 +99,7 @@ export default function OnboardingPage() {
 
   React.useEffect(() => {
     if (currentStep === 13) {
-      // FEATURE 8: Route Pre-contemplators to Trellis Listens
+      // FEATURE 8: Route Pre-contemplators to Therapy Matching OS Listens
       if (formData.readiness === "I'm just looking for someone to listen right now.") {
         const timer = setTimeout(() => {
           router.push('/listens');
@@ -187,11 +187,11 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-trellis-bg relative">
+    <div className="flex flex-col h-full bg-therapy-bg relative">
       {/* Progress Bar */}
-      <div className="w-full h-1.5 bg-trellis-surface">
+      <div className="w-full h-1.5 bg-therapy-surface">
         <div
-          className="h-full bg-trellis-primary transition-all duration-500 ease-in-out"
+          className="h-full bg-therapy-primary transition-all duration-500 ease-in-out"
           style={{ width: `${Math.min((currentStep / totalStepsForProgress) * 100, 100)}%` }}
         />
       </div>
@@ -203,7 +203,7 @@ export default function OnboardingPage() {
             {/* Back Button */}
             <button 
               onClick={handleBack} 
-              className="text-trellis-text-muted p-2 -ml-2 hover:text-trellis-text transition-colors"
+              className="text-therapy-text-muted p-2 -ml-2 hover:text-therapy-text transition-colors"
             >
               <ChevronLeft size={24} />
             </button>
@@ -213,7 +213,7 @@ export default function OnboardingPage() {
               {/* Hydrate Data */}
               <button 
                 onClick={handleDemoAutofill} 
-                className="bg-trellis-primary-deep text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1 shadow-sm hover:scale-105 active:scale-95 transition-all"
+                className="bg-therapy-primary-deep text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1 shadow-sm hover:scale-105 active:scale-95 transition-all"
               >
                 <Zap size={14} fill="currentColor" /> Demo
               </button>
@@ -221,7 +221,7 @@ export default function OnboardingPage() {
               {/* Skip directly to Match */}
               <button 
                 onClick={() => router.push('/match')} 
-                className="bg-trellis-surface text-trellis-text px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1 shadow-sm hover:scale-105 active:scale-95 transition-all"
+                className="bg-therapy-surface text-therapy-text px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1 shadow-sm hover:scale-105 active:scale-95 transition-all"
               >
                 <FastForward size={14} fill="currentColor" /> Skip
               </button>
@@ -229,7 +229,7 @@ export default function OnboardingPage() {
               {/* Exit Onboarding */}
               <button 
                 onClick={() => router.push('/')} 
-                className="text-trellis-text-muted p-1.5 ml-1 hover:text-trellis-text transition-colors"
+                className="text-therapy-text-muted p-1.5 ml-1 hover:text-therapy-text transition-colors"
               >
                 <X size={20} />
               </button>
@@ -245,10 +245,10 @@ export default function OnboardingPage() {
           {currentStep === 1 && (
             <div className="space-y-6">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   What brought you here today?
                 </h2>
-                <p className="text-trellis-text-muted mt-3">
+                <p className="text-therapy-text-muted mt-3">
                   Select all that apply. It&apos;s okay if you&apos;re not entirely sure.
                 </p>
               </div>
@@ -266,11 +266,11 @@ export default function OnboardingPage() {
                     onClick={() => toggleSelection("concerns", option)}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                       formData.concerns.includes(option)
-                        ? "border-trellis-crisis bg-trellis-crisis/5 shadow-sm"
-                        : "border-transparent bg-trellis-surface"
+                        ? "border-therapy-crisis bg-therapy-crisis/5 shadow-sm"
+                        : "border-transparent bg-therapy-surface"
                     }`}
                   >
-                    <span className={`font-medium ${option === "Thoughts of self-harm or suicide" ? "text-trellis-crisis" : ""}`}>{option}</span>
+                    <span className={`font-medium ${option === "Thoughts of self-harm or suicide" ? "text-therapy-crisis" : ""}`}>{option}</span>
                   </button>
                 ))}
               </div>
@@ -280,7 +280,7 @@ export default function OnboardingPage() {
           {currentStep === 2 && (
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="font-serif text-2xl text-trellis-text">
+                <h2 className="font-serif text-2xl text-therapy-text">
                   How long have you been feeling this way?
                 </h2>
                 <div className="grid grid-cols-2 gap-3">
@@ -290,8 +290,8 @@ export default function OnboardingPage() {
                       onClick={() => setSingleValue("duration", option)}
                       className={`text-center p-4 rounded-2xl border transition-all duration-300 text-sm ${
                         formData.duration === option
-                          ? "border-trellis-primary bg-trellis-primary/10"
-                          : "border-transparent bg-trellis-surface"
+                          ? "border-therapy-primary bg-therapy-primary/10"
+                          : "border-transparent bg-therapy-surface"
                       }`}
                     >
                       {option}
@@ -301,7 +301,7 @@ export default function OnboardingPage() {
               </div>
               {formData.duration && (
                 <div className="animate-breathe space-y-4">
-                  <h2 className="font-serif text-2xl text-trellis-text">
+                  <h2 className="font-serif text-2xl text-therapy-text">
                     How much is this affecting your day-to-day?
                   </h2>
                   <div className="space-y-3">
@@ -315,8 +315,8 @@ export default function OnboardingPage() {
                         onClick={() => setSingleValue("severity", option)}
                         className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                           formData.severity === option
-                            ? "border-trellis-primary bg-trellis-primary/10"
-                            : "border-transparent bg-trellis-surface"
+                            ? "border-therapy-primary bg-therapy-primary/10"
+                            : "border-transparent bg-therapy-surface"
                         }`}
                       >
                         {option}
@@ -331,26 +331,26 @@ export default function OnboardingPage() {
           {/* Chapter 2 */}
           {currentStep === 3 && (
             <div className="space-y-8">
-              <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+              <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                 Tell us a bit about you.
               </h2>
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-trellis-text-muted ml-1">Age</label>
+                  <label className="text-sm font-medium text-therapy-text-muted ml-1">Age</label>
                   <input
                     type="number"
                     value={formData.age}
                     onChange={(e) => setSingleValue("age", e.target.value)}
                     placeholder="e.g. 25"
-                    className="w-full bg-trellis-surface rounded-xl p-4 focus:ring-2 focus:ring-trellis-primary/20 outline-none transition-all"
+                    className="w-full bg-therapy-surface rounded-xl p-4 focus:ring-2 focus:ring-therapy-primary/20 outline-none transition-all"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-trellis-text-muted ml-1">Gender</label>
+                  <label className="text-sm font-medium text-therapy-text-muted ml-1">Gender</label>
                   <select
                     value={formData.gender}
                     onChange={(e) => setSingleValue("gender", e.target.value)}
-                    className="w-full bg-trellis-surface rounded-xl p-4 focus:ring-2 focus:ring-trellis-primary/20 outline-none transition-all appearance-none"
+                    className="w-full bg-therapy-surface rounded-xl p-4 focus:ring-2 focus:ring-therapy-primary/20 outline-none transition-all appearance-none"
                   >
                     <option value="" disabled>Select Gender</option>
                     <option value="Woman">Woman</option>
@@ -360,13 +360,13 @@ export default function OnboardingPage() {
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-trellis-text-muted ml-1">Pronouns</label>
+                  <label className="text-sm font-medium text-therapy-text-muted ml-1">Pronouns</label>
                   <input
                     type="text"
                     value={formData.pronouns}
                     onChange={(e) => setSingleValue("pronouns", e.target.value)}
                     placeholder="e.g. She/her"
-                    className="w-full bg-trellis-surface rounded-xl p-4 focus:ring-2 focus:ring-trellis-primary/20 outline-none transition-all"
+                    className="w-full bg-therapy-surface rounded-xl p-4 focus:ring-2 focus:ring-therapy-primary/20 outline-none transition-all"
                   />
                 </div>
               </div>
@@ -376,16 +376,16 @@ export default function OnboardingPage() {
           {currentStep === 4 && (
             <div className="space-y-8">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   Where are you based, and what languages do you prefer?
                 </h2>
-                <p className="text-trellis-text-muted mt-3">
+                <p className="text-therapy-text-muted mt-3">
                   Therapy hits different in your mother tongue.
                 </p>
               </div>
               <div className="space-y-6">
                 <div className="space-y-3">
-                  <label className="text-sm font-medium text-trellis-text-muted ml-1">Languages</label>
+                  <label className="text-sm font-medium text-therapy-text-muted ml-1">Languages</label>
                   <div className="flex flex-wrap gap-2">
                     {["English", "Hindi", "Tamil", "Kannada", "Malayalam", "Telugu", "Marathi"].map((lang) => (
                       <button
@@ -393,8 +393,8 @@ export default function OnboardingPage() {
                         onClick={() => toggleSelection("languages", lang)}
                         className={`px-4 py-2 rounded-full border text-sm transition-all duration-300 ${
                           formData.languages.includes(lang)
-                            ? "border-trellis-primary bg-trellis-primary/10 text-trellis-primary"
-                            : "border-trellis-text/10 bg-trellis-surface text-trellis-text"
+                            ? "border-therapy-primary bg-therapy-primary/10 text-therapy-primary"
+                            : "border-therapy-text/10 bg-therapy-surface text-therapy-text"
                         }`}
                       >
                         {lang}
@@ -403,13 +403,13 @@ export default function OnboardingPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-trellis-text-muted ml-1">City</label>
+                  <label className="text-sm font-medium text-therapy-text-muted ml-1">City</label>
                   <input
                     type="text"
                     value={formData.city}
                     onChange={(e) => setSingleValue("city", e.target.value)}
                     placeholder="e.g. Bengaluru"
-                    className="w-full bg-trellis-surface rounded-xl p-4 focus:ring-2 focus:ring-trellis-primary/20 outline-none transition-all"
+                    className="w-full bg-therapy-surface rounded-xl p-4 focus:ring-2 focus:ring-therapy-primary/20 outline-none transition-all"
                   />
                 </div>
               </div>
@@ -420,10 +420,10 @@ export default function OnboardingPage() {
           {currentStep === 5 && (
             <div className="space-y-6">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   How would you like your therapist to communicate?
                 </h2>
-                <p className="text-trellis-text-muted mt-3">
+                <p className="text-therapy-text-muted mt-3">
                   There is no wrong answer. It&apos;s about what feels safe to you.
                 </p>
               </div>
@@ -438,8 +438,8 @@ export default function OnboardingPage() {
                     onClick={() => setSingleValue("therapistStyle", option)}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                       formData.therapistStyle === option
-                        ? "border-trellis-primary bg-trellis-primary/10"
-                        : "border-transparent bg-trellis-surface"
+                        ? "border-therapy-primary bg-therapy-primary/10"
+                        : "border-transparent bg-therapy-surface"
                     }`}
                   >
                     <span className="font-medium">{option}</span>
@@ -452,7 +452,7 @@ export default function OnboardingPage() {
           {currentStep === 6 && (
             <div className="space-y-6">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   What should the sessions focus on?
                 </h2>
               </div>
@@ -467,8 +467,8 @@ export default function OnboardingPage() {
                     onClick={() => setSingleValue("therapistFocus", option)}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                       formData.therapistFocus === option
-                        ? "border-trellis-primary bg-trellis-primary/10"
-                        : "border-transparent bg-trellis-surface"
+                        ? "border-therapy-primary bg-therapy-primary/10"
+                        : "border-transparent bg-therapy-surface"
                     }`}
                   >
                     <span className="font-medium">{option}</span>
@@ -481,7 +481,7 @@ export default function OnboardingPage() {
           {currentStep === 7 && (
             <div className="space-y-6">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   Does the therapist&apos;s gender matter to you?
                 </h2>
               </div>
@@ -492,8 +492,8 @@ export default function OnboardingPage() {
                     onClick={() => setSingleValue("genderPreference", option)}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                       formData.genderPreference === option
-                        ? "border-trellis-primary bg-trellis-primary/10"
-                        : "border-transparent bg-trellis-surface"
+                        ? "border-therapy-primary bg-therapy-primary/10"
+                        : "border-transparent bg-therapy-surface"
                     }`}
                   >
                     <span className="font-medium">{option}</span>
@@ -507,10 +507,10 @@ export default function OnboardingPage() {
           {currentStep === 8 && (
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   Culture shapes how we heal.
                 </h2>
-                <p className="text-trellis-text-muted">
+                <p className="text-therapy-text-muted">
                   How would you describe your relationship with your family?
                 </p>
                 <div className="space-y-3">
@@ -520,8 +520,8 @@ export default function OnboardingPage() {
                       onClick={() => setSingleValue("familyDynamics", option)}
                       className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                         formData.familyDynamics === option
-                          ? "border-trellis-primary bg-trellis-primary/10"
-                          : "border-transparent bg-trellis-surface"
+                          ? "border-therapy-primary bg-therapy-primary/10"
+                          : "border-transparent bg-therapy-surface"
                       }`}
                     >
                       <span className="font-medium">{option}</span>
@@ -531,7 +531,7 @@ export default function OnboardingPage() {
               </div>
               {formData.familyDynamics && (
                 <div className="animate-breathe space-y-4">
-                  <h2 className="font-serif text-2xl text-trellis-text">
+                  <h2 className="font-serif text-2xl text-therapy-text">
                     How should religion/spirituality be handled in therapy?
                   </h2>
                   <div className="space-y-3">
@@ -545,8 +545,8 @@ export default function OnboardingPage() {
                         onClick={() => setSingleValue("religion", option)}
                         className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                           formData.religion === option
-                            ? "border-trellis-primary bg-trellis-primary/10"
-                            : "border-transparent bg-trellis-surface"
+                            ? "border-therapy-primary bg-therapy-primary/10"
+                            : "border-transparent bg-therapy-surface"
                         }`}
                       >
                         <span className="font-medium">{option}</span>
@@ -562,13 +562,13 @@ export default function OnboardingPage() {
           {currentStep === 9 && (
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   Let&apos;s talk logistics.
                 </h2>
-                <p className="text-trellis-text-muted">
+                <p className="text-therapy-text-muted">
                   Finding a sustainable routine is key.
                 </p>
-                <p className="font-medium text-trellis-text">Preferred format?</p>
+                <p className="font-medium text-therapy-text">Preferred format?</p>
                 <div className="grid grid-cols-3 gap-2">
                   {["Video calls", "Phone calls", "In-person"].map((option) => (
                     <button
@@ -576,8 +576,8 @@ export default function OnboardingPage() {
                       onClick={() => setSingleValue("format", option)}
                       className={`p-3 rounded-2xl border text-sm transition-all duration-300 ${
                         formData.format === option
-                          ? "border-trellis-primary bg-trellis-primary/10"
-                          : "border-transparent bg-trellis-surface"
+                          ? "border-therapy-primary bg-therapy-primary/10"
+                          : "border-transparent bg-therapy-surface"
                       }`}
                     >
                       {option}
@@ -587,7 +587,7 @@ export default function OnboardingPage() {
               </div>
               {formData.format && (
                 <div className="animate-breathe space-y-4">
-                  <p className="font-medium text-trellis-text">What is your budget per session?</p>
+                  <p className="font-medium text-therapy-text">What is your budget per session?</p>
                   <div className="space-y-3">
                     {["Under ₹1,500", "₹1,500 - ₹2,500", "₹2,500+"].map((option) => (
                       <button
@@ -595,8 +595,8 @@ export default function OnboardingPage() {
                         onClick={() => setSingleValue("budget", option)}
                         className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                           formData.budget === option
-                            ? "border-trellis-primary bg-trellis-primary/10"
-                            : "border-transparent bg-trellis-surface"
+                            ? "border-therapy-primary bg-therapy-primary/10"
+                            : "border-transparent bg-therapy-surface"
                         }`}
                       >
                         <span className="font-medium">{option}</span>
@@ -611,7 +611,7 @@ export default function OnboardingPage() {
           {currentStep === 10 && (
             <div className="space-y-6">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   Have you been to therapy before?
                 </h2>
               </div>
@@ -626,8 +626,8 @@ export default function OnboardingPage() {
                     onClick={() => setSingleValue("priorTherapy", option)}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                       formData.priorTherapy === option
-                        ? "border-trellis-primary bg-trellis-primary/10"
-                        : "border-transparent bg-trellis-surface"
+                        ? "border-therapy-primary bg-therapy-primary/10"
+                        : "border-transparent bg-therapy-surface"
                     }`}
                   >
                     <span className="font-medium">{option}</span>
@@ -641,10 +641,10 @@ export default function OnboardingPage() {
           {currentStep === 11 && (
             <div className="space-y-6">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   How ready do you feel to dive into therapy right now?
                 </h2>
-                <p className="text-trellis-text-muted mt-3">
+                <p className="text-therapy-text-muted mt-3">
                   Therapy takes work. It's okay if you just need space to vent first.
                 </p>
               </div>
@@ -659,8 +659,8 @@ export default function OnboardingPage() {
                     onClick={() => setSingleValue("readiness", option)}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
                       formData.readiness === option
-                        ? "border-trellis-primary bg-trellis-primary/10"
-                        : "border-transparent bg-trellis-surface"
+                        ? "border-therapy-primary bg-therapy-primary/10"
+                        : "border-transparent bg-therapy-surface"
                     }`}
                   >
                     <span className="font-medium">{option}</span>
@@ -673,20 +673,20 @@ export default function OnboardingPage() {
           {currentStep === 12 && (
             <div className="space-y-6">
               <div>
-                <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+                <h2 className="font-serif text-3xl text-therapy-text leading-tight">
                   Here is what we learned about you.
                 </h2>
-                <p className="text-trellis-text-muted mt-3">
+                <p className="text-therapy-text-muted mt-3">
                   Before we find your match, let&apos;s make sure we got this right.
                 </p>
               </div>
 
-              <div className="bg-trellis-surface rounded-2xl p-6 space-y-6 shadow-sm border border-trellis-text/5">
+              <div className="bg-therapy-surface rounded-2xl p-6 space-y-6 shadow-sm border border-therapy-text/5">
                 <div className="space-y-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-trellis-text-muted">What you&apos;re carrying</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-therapy-text-muted">What you&apos;re carrying</p>
                   <div className="flex flex-wrap gap-2">
                     {formData.concerns.map((concern) => (
-                      <span key={concern} className="bg-trellis-bg text-trellis-text-muted px-3 py-1 rounded-full text-sm border border-trellis-text/5">
+                      <span key={concern} className="bg-therapy-bg text-therapy-text-muted px-3 py-1 rounded-full text-sm border border-therapy-text/5">
                         {concern}
                       </span>
                     ))}
@@ -694,19 +694,19 @@ export default function OnboardingPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-trellis-text-muted">Your ideal therapist</p>
-                  <p className="text-trellis-text leading-relaxed">
+                  <p className="text-xs font-bold uppercase tracking-wider text-therapy-text-muted">Your ideal therapist</p>
+                  <p className="text-therapy-text leading-relaxed">
                     A <span className="font-semibold">{formData.genderPreference}</span> therapist who is <span className="font-semibold">{formData.therapistStyle.toLowerCase()}</span>.
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-trellis-text-muted">Logistics</p>
-                  <div className="flex items-center gap-4 text-trellis-text text-sm">
-                    <span className="flex items-center gap-1.5 bg-trellis-bg/50 px-3 py-1.5 rounded-lg">
+                  <p className="text-xs font-bold uppercase tracking-wider text-therapy-text-muted">Logistics</p>
+                  <div className="flex items-center gap-4 text-therapy-text text-sm">
+                    <span className="flex items-center gap-1.5 bg-therapy-bg/50 px-3 py-1.5 rounded-lg">
                       {formData.format}
                     </span>
-                    <span className="flex items-center gap-1.5 bg-trellis-bg/50 px-3 py-1.5 rounded-lg">
+                    <span className="flex items-center gap-1.5 bg-therapy-bg/50 px-3 py-1.5 rounded-lg">
                       {formData.budget}
                     </span>
                   </div>
@@ -717,10 +717,10 @@ export default function OnboardingPage() {
 
           {currentStep === 13 && (
             <div className="flex flex-col items-center justify-center h-[80vh] text-center px-6">
-              <div className="w-24 h-24 rounded-full bg-trellis-primary/20 animate-pulse flex items-center justify-center">
-                <Leaf className="text-trellis-primary" size={40} fill="currentColor" />
+              <div className="w-24 h-24 rounded-full bg-therapy-primary/20 animate-pulse flex items-center justify-center">
+                <Leaf className="text-therapy-primary" size={40} fill="currentColor" />
               </div>
-              <h2 className="font-serif text-2xl text-trellis-text mt-8 animate-breathe leading-relaxed">
+              <h2 className="font-serif text-2xl text-therapy-text mt-8 animate-breathe leading-relaxed">
                 {loaderMessage}
               </h2>
             </div>
@@ -730,14 +730,14 @@ export default function OnboardingPage() {
 
       {/* Footer Action Bar */}
       {currentStep !== 13 && (
-        <footer className="p-6 bg-trellis-bg/90 backdrop-blur-md border-t border-trellis-text/5">
+        <footer className="p-6 bg-therapy-bg/90 backdrop-blur-md border-t border-therapy-text/5">
           <button
             disabled={!isStepValid || currentStep > 12}
             onClick={() => setCurrentStep(currentStep + 1)}
             className={`w-full py-4 rounded-2xl text-lg font-medium transition-all duration-300 ${
               isStepValid && currentStep <= 12
-                ? "bg-trellis-primary-deep text-white shadow-lg active:scale-[0.98]"
-                : "bg-trellis-surface text-trellis-text-muted cursor-not-allowed"
+                ? "bg-therapy-primary-deep text-white shadow-lg active:scale-[0.98]"
+                : "bg-therapy-surface text-therapy-text-muted cursor-not-allowed"
             }`}
           >
             {currentStep === 12 ? "Find my match" : "Continue"}

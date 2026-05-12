@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { X, Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useTrellis } from '@/contexts/TrellisContext';
+import { useTherapy } from '@/contexts/TherapyContext';
 import { getORSInterpretation } from '@/lib/clinical';
 
 interface ORSItemProps {
@@ -19,8 +19,8 @@ const ORSItem = ({ label, value, onChange, leftAnchor, rightAnchor, helper }: OR
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-end">
-        <label className="text-base font-semibold text-trellis-text">{label}</label>
-        <span className="text-sm font-bold text-trellis-primary-deep bg-trellis-primary/10 px-2 py-0.5 rounded-md">
+        <label className="text-base font-semibold text-therapy-text">{label}</label>
+        <span className="text-sm font-bold text-therapy-primary-deep bg-therapy-primary/10 px-2 py-0.5 rounded-md">
           {value.toFixed(1)}
         </span>
       </div>
@@ -33,14 +33,14 @@ const ORSItem = ({ label, value, onChange, leftAnchor, rightAnchor, helper }: OR
           step="0.1"
           value={value}
           onChange={(e) => onChange(parseFloat(e.target.value))}
-          className="w-full h-2 bg-trellis-surface rounded-lg appearance-none cursor-pointer accent-trellis-primary transition-all"
+          className="w-full h-2 bg-therapy-surface rounded-lg appearance-none cursor-pointer accent-therapy-primary transition-all"
           style={{
             background: `linear-gradient(to right, #7A9E7E ${value * 10}%, #E8E2D2 ${value * 10}%)`
           }}
         />
         <div className="flex justify-between mt-3 px-0.5">
-          <span className="text-[10px] uppercase tracking-wider font-bold text-trellis-text-muted">{leftAnchor}</span>
-          <span className="text-[10px] uppercase tracking-wider font-bold text-trellis-text-muted">{rightAnchor}</span>
+          <span className="text-[10px] uppercase tracking-wider font-bold text-therapy-text-muted">{leftAnchor}</span>
+          <span className="text-[10px] uppercase tracking-wider font-bold text-therapy-text-muted">{rightAnchor}</span>
         </div>
       </div>
       
@@ -51,7 +51,7 @@ const ORSItem = ({ label, value, onChange, leftAnchor, rightAnchor, helper }: OR
 
 export default function CheckinPage() {
   const router = useRouter();
-  const { addORS } = useTrellis();
+  const { addORS } = useTherapy();
   const [submitted, setSubmitted] = useState(false);
   const [scores, setScores] = useState({
     personal: 5,
@@ -79,16 +79,16 @@ export default function CheckinPage() {
 
   if (submitted) {
     return (
-      <div className="max-w-md mx-auto min-h-screen bg-trellis-bg flex flex-col items-center justify-center px-8 text-center">
+      <div className="max-w-md mx-auto min-h-screen bg-therapy-bg flex flex-col items-center justify-center px-8 text-center">
         <div className="animate-breathe mb-8">
-          <div className="w-24 h-24 bg-trellis-primary/10 rounded-full flex items-center justify-center">
-            <Check className="text-trellis-primary w-12 h-12" strokeWidth={3} />
+          <div className="w-24 h-24 bg-therapy-primary/10 rounded-full flex items-center justify-center">
+            <Check className="text-therapy-primary w-12 h-12" strokeWidth={3} />
           </div>
         </div>
-        <h1 className="font-serif text-3xl text-trellis-text leading-tight">
+        <h1 className="font-serif text-3xl text-therapy-text leading-tight">
           Check-in Saved
         </h1>
-        <p className="text-trellis-text-muted mt-6 leading-relaxed">
+        <p className="text-therapy-text-muted mt-6 leading-relaxed">
           Your therapist has been notified of your current well-being. Heading to your journey...
         </p>
       </div>
@@ -96,16 +96,16 @@ export default function CheckinPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg font-sans text-trellis-text pb-40">
-      <header className="flex items-center justify-between px-6 py-6 sticky top-0 bg-trellis-bg/80 backdrop-blur-md z-40">
+    <div className="max-w-md mx-auto min-h-screen bg-therapy-bg font-sans text-therapy-text pb-40">
+      <header className="flex items-center justify-between px-6 py-6 sticky top-0 bg-therapy-bg/80 backdrop-blur-md z-40">
         <button 
           onClick={() => router.back()}
-          className="p-2 -ml-2 text-trellis-text-muted hover:text-trellis-text transition-colors"
+          className="p-2 -ml-2 text-therapy-text-muted hover:text-therapy-text transition-colors"
         >
           <X size={24} />
         </button>
         <div className="flex flex-col items-center">
-          <span className="text-[10px] uppercase tracking-widest font-bold text-trellis-primary mb-0.5">Pre-Session Check-In</span>
+          <span className="text-[10px] uppercase tracking-widest font-bold text-therapy-primary mb-0.5">Pre-Session Check-In</span>
           <h1 className="font-serif text-lg leading-none">How are you doing?</h1>
         </div>
         <div className="w-10"></div>
@@ -113,10 +113,10 @@ export default function CheckinPage() {
 
       <main className="px-6 animate-breathe">
         <div className="mt-4 mb-10">
-          <h2 className="font-serif text-3xl text-trellis-text leading-tight">
+          <h2 className="font-serif text-3xl text-therapy-text leading-tight">
             Check in with yourself
           </h2>
-          <p className="text-trellis-text-muted mt-3 text-sm leading-relaxed font-medium">
+          <p className="text-therapy-text-muted mt-3 text-sm leading-relaxed font-medium">
             Take a moment before your session. This helps your therapist understand where you are right now, and helps us track if therapy is working over time.
           </p>
         </div>
@@ -160,22 +160,22 @@ export default function CheckinPage() {
         </div>
 
         {/* Score Display */}
-        <div className="mt-16 p-6 bg-white rounded-3xl border border-trellis-primary/10 shadow-sm animate-breathe">
+        <div className="mt-16 p-6 bg-white rounded-3xl border border-therapy-primary/10 shadow-sm animate-breathe">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase tracking-widest font-bold text-trellis-text-muted">Total Score</span>
-            <span className="text-xl font-serif text-trellis-primary-deep">{total.toFixed(0)} / 40</span>
+            <span className="text-xs uppercase tracking-widest font-bold text-therapy-text-muted">Total Score</span>
+            <span className="text-xl font-serif text-therapy-primary-deep">{total.toFixed(0)} / 40</span>
           </div>
-          <p className="text-sm leading-relaxed text-trellis-text font-medium italic">
+          <p className="text-sm leading-relaxed text-therapy-text font-medium italic">
             &quot;{interpretation}&quot;
           </p>
         </div>
       </main>
 
       {/* Fixed Bottom Action */}
-      <div className="fixed bottom-0 left-0 right-0 w-full max-w-md mx-auto bg-trellis-bg/95 backdrop-blur-md border-t border-trellis-surface p-6 pb-10 z-50">
+      <div className="fixed bottom-0 left-0 right-0 w-full max-w-md mx-auto bg-therapy-bg/95 backdrop-blur-md border-t border-therapy-surface p-6 pb-10 z-50">
         <button
           onClick={handleSubmit}
-          className="w-full bg-trellis-primary-deep text-white py-4 rounded-2xl text-lg font-semibold shadow-lg active:scale-[0.98] transition-all"
+          className="w-full bg-therapy-primary-deep text-white py-4 rounded-2xl text-lg font-semibold shadow-lg active:scale-[0.98] transition-all"
         >
           Save & head to session
         </button>

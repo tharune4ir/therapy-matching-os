@@ -16,7 +16,7 @@ const BottomNav = () => {
   ];
 
   return (
-    <nav className="sticky bottom-0 w-full bg-trellis-surface/90 backdrop-blur-md border-t border-trellis-text/5 min-h-[60px] flex items-center justify-around px-6 pb-2 z-40">
+    <nav className="sticky bottom-0 w-full bg-therapy-surface/90 backdrop-blur-md border-t border-therapy-text/5 min-h-[60px] flex items-center justify-around px-6 pb-2 z-40">
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         const Icon = item.icon;
@@ -26,7 +26,7 @@ const BottomNav = () => {
             key={item.label}
             href={item.href}
             className={`flex flex-col items-center gap-1 transition-colors duration-300 min-w-[44px] min-h-[44px] justify-center ${
-              isActive ? "text-trellis-primary" : "text-trellis-text-muted"
+              isActive ? "text-therapy-primary" : "text-therapy-text-muted"
             }`}
           >
             <Icon size={24} />
@@ -38,7 +38,7 @@ const BottomNav = () => {
       {/* Menu Trigger */}
       <button
         onClick={() => setIsMenuOpen(true)}
-        className="flex flex-col items-center gap-1 transition-colors duration-300 min-w-[44px] min-h-[44px] justify-center text-trellis-text-muted hover:text-trellis-primary"
+        className="flex flex-col items-center gap-1 transition-colors duration-300 min-w-[44px] min-h-[44px] justify-center text-therapy-text-muted hover:text-therapy-primary"
       >
         <Menu size={24} />
         <span className="text-[10px] font-medium">Menu</span>
@@ -55,72 +55,72 @@ const BottomNav = () => {
             <div className="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-6" />
             
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-serif text-xl text-trellis-text">More</h3>
-              <button onClick={() => setIsMenuOpen(false)} className="text-trellis-text-muted p-2 bg-trellis-surface rounded-full">
+              <h3 className="font-serif text-xl text-therapy-text">More</h3>
+              <button onClick={() => setIsMenuOpen(false)} className="text-therapy-text-muted p-2 bg-therapy-surface rounded-full">
                 <X size={16} />
               </button>
             </div>
 
             <div className="space-y-2">
-              <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
-                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+              <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-therapy-surface transition-colors">
+                <div className="p-2 bg-therapy-primary/10 rounded-xl text-therapy-primary-deep">
                   <User size={20} />
                 </div>
                 <div>
-                  <p className="font-semibold text-trellis-text">Your Profile</p>
-                  <p className="text-xs text-trellis-text-muted">View your active C-NIP match profile</p>
+                  <p className="font-semibold text-therapy-text">Your Profile</p>
+                  <p className="text-xs text-therapy-text-muted">View your active C-NIP match profile</p>
                 </div>
               </Link>
 
-              <Link href="/help" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
-                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+              <Link href="/help" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-therapy-surface transition-colors">
+                <div className="p-2 bg-therapy-primary/10 rounded-xl text-therapy-primary-deep">
                   <Heart size={20} />
                 </div>
                 <div>
-                  <p className="font-semibold text-trellis-text">Help & Support</p>
-                  <p className="text-xs text-trellis-text-muted">FAQ and crisis resources</p>
+                  <p className="font-semibold text-therapy-text">Help & Support</p>
+                  <p className="text-xs text-therapy-text-muted">FAQ and crisis resources</p>
                 </div>
               </Link>
 
-              <Link href="/checkin" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
-                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+              <Link href="/checkin" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-therapy-surface transition-colors">
+                <div className="p-2 bg-therapy-primary/10 rounded-xl text-therapy-primary-deep">
                   <TrendingUp size={20} />
                 </div>
                 <div>
-                  <p className="font-semibold text-trellis-text">Pre-session Check-in</p>
-                  <p className="text-xs text-trellis-text-muted">Log your current ORS well-being</p>
+                  <p className="font-semibold text-therapy-text">Pre-session Check-in</p>
+                  <p className="text-xs text-therapy-text-muted">Log your current ORS well-being</p>
                 </div>
               </Link>
 
-              <Link href="/reflections" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
-                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+              <Link href="/reflections" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-therapy-surface transition-colors">
+                <div className="p-2 bg-therapy-primary/10 rounded-xl text-therapy-primary-deep">
                   <PenTool size={20} />
                 </div>
                 <div>
-                  <p className="font-semibold text-trellis-text">Daily Reflections</p>
-                  <p className="text-xs text-trellis-text-muted">Pause and reflect on today</p>
+                  <p className="font-semibold text-therapy-text">Daily Reflections</p>
+                  <p className="text-xs text-therapy-text-muted">Pause and reflect on today</p>
                 </div>
               </Link>
 
-              <Link href="/preferences" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
-                <div className="p-2 bg-trellis-primary/10 rounded-xl text-trellis-primary-deep">
+              <Link href="/preferences" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-therapy-surface transition-colors">
+                <div className="p-2 bg-therapy-primary/10 rounded-xl text-therapy-primary-deep">
                   <Settings size={20} />
                 </div>
                 <div>
-                  <p className="font-semibold text-trellis-text">Therapy Preferences</p>
-                  <p className="text-xs text-trellis-text-muted">View your matching profile</p>
+                  <p className="font-semibold text-therapy-text">Therapy Preferences</p>
+                  <p className="text-xs text-therapy-text-muted">View your matching profile</p>
                 </div>
               </Link>
 
-              <div className="h-px bg-trellis-surface my-2 mx-4" />
+              <div className="h-px bg-therapy-surface my-2 mx-4" />
 
-              <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-trellis-surface transition-colors">
+              <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-therapy-surface transition-colors">
                 <div className="p-2 bg-gray-100 rounded-xl text-gray-600">
                   <Database size={20} />
                 </div>
                 <div>
-                  <p className="font-semibold text-trellis-text">Algorithm Sandbox</p>
-                  <p className="text-xs text-trellis-text-muted">Admin view of 352-matrix</p>
+                  <p className="font-semibold text-therapy-text">Algorithm Sandbox</p>
+                  <p className="text-xs text-therapy-text-muted">Admin view of 352-matrix</p>
                 </div>
               </Link>
             </div>

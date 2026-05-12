@@ -40,10 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Trellis Master Docs & Research
-TRELLIS_MASTER.md
-Trellis_GEMINI_BUILD_KIT.md
-TRELLIS*Research*Master*Document.md
+# Therapy Matching OS Master Docs & Research
+THERAPY_MATCHING_OS_MASTER.md
+Therapy Matching OS_GEMINI_BUILD_KIT.md
+THERAPY_MATCHING_OS*Research*Master*Document.md
 SAATHI_MASTER.md
 SAATHI*Research*Master*Document.md
 *.md.bak

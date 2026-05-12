@@ -25,7 +25,7 @@ interface ReflectionEntry {
   date: string;
 }
 
-interface TrellisContextType {
+interface TherapyContextType {
   activeProfile: UserProfile | null;
   setActiveProfile: (profile: UserProfile | null) => void;
   moodHistory: { mood: string; date: string }[];
@@ -39,9 +39,9 @@ interface TrellisContextType {
   currentSrsMean: number;
 }
 
-const TrellisContext = createContext<TrellisContextType | undefined>(undefined);
+const TherapyContext = createContext<TherapyContextType | undefined>(undefined);
 
-export function TrellisProvider({ children }: { children: React.ReactNode }) {
+export function TherapyProvider({ children }: { children: React.ReactNode }) {
   const [activeProfile, setActiveProfileState] = useState<UserProfile | null>(null);
   const [moodHistory, setMoodHistory] = useState<{ mood: string; date: string }[]>([]);
   const [feedbackLog, setFeedbackLog] = useState<FeedbackEntry[]>([
@@ -125,7 +125,7 @@ export function TrellisProvider({ children }: { children: React.ReactNode }) {
     : 4.8;
 
   return (
-    <TrellisContext.Provider value={{
+    <TherapyContext.Provider value={{
       activeProfile,
       setActiveProfile,
       moodHistory,
@@ -139,14 +139,14 @@ export function TrellisProvider({ children }: { children: React.ReactNode }) {
       currentSrsMean
     }}>
       {children}
-    </TrellisContext.Provider>
+    </TherapyContext.Provider>
   );
 }
 
-export function useTrellis() {
-  const context = useContext(TrellisContext);
+export function useTherapy() {
+  const context = useContext(TherapyContext);
   if (context === undefined) {
-    throw new Error('useTrellis must be used within a TrellisProvider');
+    throw new Error('useTherapy must be used within a TherapyProvider');
   }
   return context;
 }

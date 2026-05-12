@@ -3,7 +3,7 @@
 
 @layer base {
   body {
-    @apply bg-trellis-bg text-trellis-text;
+    @apply bg-therapy-bg text-therapy-text;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

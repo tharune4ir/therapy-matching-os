@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'trellis-primary': '#7A9E7E',
-        'trellis-primary-deep': '#3F5E45',
-        'trellis-secondary': '#C9B8E0',
-        'trellis-accent': '#D4A574',
-        'trellis-bg': '#F7F3ED',
-        'trellis-surface': '#EDEAE3',
-        'trellis-text': '#2A2E2B',
-        'trellis-text-muted': '#6F756F',
-        'trellis-crisis': '#C9534F',
+        'therapy-primary': '#7A9E7E',
+        'therapy-primary-deep': '#3F5E45',
+        'therapy-secondary': '#C9B8E0',
+        'therapy-accent': '#D4A574',
+        'therapy-bg': '#F7F3ED',
+        'therapy-surface': '#EDEAE3',
+        'therapy-text': '#2A2E2B',
+        'therapy-text-muted': '#6F756F',
+        'therapy-crisis': '#C9534F',
       },
       fontFamily: {
         serif: ['var(--font-fraunces)'],

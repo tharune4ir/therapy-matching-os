@@ -1,5 +1,5 @@
-# 🎬 Trellis — Complete Demo Walkthrough
-### Teleprompter for demoing Trellis end-to-end.
+# 🎬 Therapy Matching OS — Complete Demo Walkthrough
+### Teleprompter for demoing Therapy Matching OS end-to-end.
 
 > **How to use this document:** Read each section out loud while navigating to the corresponding page. The "SAY" blocks are your talking points. The "DO" blocks tell you what to click. The "BEHIND THE SCENES" blocks explain what the code is doing — use these for technical audiences or skip them for non-technical ones.
 
@@ -9,10 +9,10 @@
 **URL:** `localhost:3000`
 
 ### DO:
-- Open the app. You should see the Trellis leaf logo, the headline, and the 3-step "How it works" flow.
+- Open the app. You should see the Therapy Matching OS leaf logo, the headline, and the 3-step "How it works" flow.
 
 ### SAY:
-> "So this is **Trellis** — I built this as a clinical matching engine. The problem I'm solving here is straightforward: finding the right therapist is really hard. Most platforms just give you a filtered directory — sort by location, price, availability. But none of that actually tells you whether this therapist will *understand* you."
+> "So this is **Therapy Matching OS** — I built this as a clinical matching engine. The problem I'm solving here is straightforward: finding the right therapist is really hard. Most platforms just give you a filtered directory — sort by location, price, availability. But none of that actually tells you whether this therapist will *understand* you."
 >
 > "What I did differently is — I'm using **58 clinical data points** to match you with a therapist based on your personality, your communication style, your cultural background, and the specific issue you're dealing with. The goal isn't to find *a* therapist — it's to find *your* therapist."
 >
@@ -20,7 +20,7 @@
 
 ### BEHIND THE SCENES:
 - Built with **Next.js 16** (App Router), runs entirely client-side — no database, no backend.
-- All state is managed through a custom **React Context** (`TrellisContext`) and persisted in `sessionStorage`.
+- All state is managed through a custom **React Context** (`TherapyContext`) and persisted in `sessionStorage`.
 - Design system: **Sage Green (#7A9E7E)** for growth, **Linen Cream (#F7F3ED)** for warmth, **Warm Ochre (#D4A574)** for accents.
 
 ### DO:
@@ -138,7 +138,7 @@
 ### Step 8: Culture (Family & Religion)
 
 ### SAY:
-> "This is where Trellis is completely different from Western tools. I ask about family dynamics — close, complicated, or distant — and how religion should be handled in therapy. In the Indian context, a therapist who doesn't understand joint-family enmeshment or caste dynamics will lose the client's trust immediately."
+> "This is where Therapy Matching OS is completely different from Western tools. I ask about family dynamics — close, complicated, or distant — and how religion should be handled in therapy. In the Indian context, a therapist who doesn't understand joint-family enmeshment or caste dynamics will lose the client's trust immediately."
 
 ---
 
@@ -159,7 +159,7 @@
 ### Step 11: Readiness Assessment
 
 ### SAY:
-> "This is a clinical gate I built. If the user picks 'I'm just looking for someone to listen right now,' they are **not matched with a therapist.** Instead, they're routed to **Trellis Listens** — a lower-intensity peer listening service. Pushing therapy on someone who isn't ready actually increases harm."
+> "This is a clinical gate I built. If the user picks 'I'm just looking for someone to listen right now,' they are **not matched with a therapist.** Instead, they're routed to **Therapy Matching OS Listens** — a lower-intensity peer listening service. Pushing therapy on someone who isn't ready actually increases harm."
 
 ### BEHIND THE SCENES:
 - This implements the **Transtheoretical Model (Prochaska & DiClemente)** — Pre-contemplation users need support, not treatment.
@@ -377,7 +377,7 @@
 ### SAY:
 > "If a user selects 'Thoughts of self-harm or suicide' during onboarding, they are *immediately* redirected here. No matching, no scores, no delay. Just real crisis resources: iCall, Tele-MANAS, Vandrevala Foundation."
 
-### Trellis Listens (`/listens`)
+### Therapy Matching OS Listens (`/listens`)
 ### SAY:
 > "For users who said 'I just want someone to listen' — they're not ready for clinical therapy. This page offers a free 30-minute peer listening session. No pressure, no diagnosis."
 
@@ -411,7 +411,7 @@
 > - **State:** React Context + sessionStorage (no database in this prototype)
 > - **Engine:** Pure TypeScript matching engine with 28 weighted dimensions
 > - **Data:** 22 user personas × 16 therapist profiles × 52-factor clinical taxonomy
-> - **Safety:** Hard-coded crisis detours (self-harm → helpline, pre-contemplation → Trellis Listens)
+> - **Safety:** Hard-coded crisis detours (self-harm → helpline, pre-contemplation → Therapy Matching OS Listens)
 > - **Feedback Loop:** ORS (pre-session) + SRS (post-session) = PCOMS implementation
 > - **Explanation Engine:** Template-based NLG that converts raw scores into human-readable justifications
 

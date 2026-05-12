@@ -1,6 +1,6 @@
-# Trellis | High-Fidelity Therapy Matching Prototype
+# Therapy Matching OS | High-Fidelity Therapy Matching Prototype
 
-**Trellis** is a research-backed, mobile-first therapy matching platform designed to solve the "first-session mismatch" problem. It utilizes a multi-layered compatibility engine to pair users with therapists based on the **therapeutic alliance** — the single strongest predictor of clinical success.
+**Therapy Matching OS** is a research-backed, mobile-first therapy matching platform designed to solve the "first-session mismatch" problem. It utilizes a multi-layered compatibility engine to pair users with therapists based on the **therapeutic alliance** — the single strongest predictor of clinical success.
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## 🎨 Design Philosophy
 
-Trellis utilizes a custom design system centered on **Linen Cream** (#F7F3ED) and **Sage Green** (#7A9E7E). 
+Therapy Matching OS utilizes a custom design system centered on **Linen Cream** (#F7F3ED) and **Sage Green** (#7A9E7E). 
 
 - **Typography**: `Fraunces` (Serif) for emotional resonance and `Inter` (Sans) for clarity.
 - **Aesthetic**: Minimalist, warm, and clinical-grade.

@@ -12,20 +12,20 @@ export default function HelpPage() {
   ];
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-24 font-sans text-trellis-text">
+    <div className="max-w-md mx-auto min-h-screen bg-therapy-bg pb-24 font-sans text-therapy-text">
       {/* Header */}
       <header className="pt-12 px-6 mb-8">
-        <h1 className="font-serif text-3xl text-trellis-text leading-tight">Help & Support</h1>
+        <h1 className="font-serif text-3xl text-therapy-text leading-tight">Help & Support</h1>
       </header>
 
       <main className="px-6 space-y-8 animate-breathe">
         {/* Search Bar */}
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-trellis-text-muted" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-therapy-text-muted" size={18} />
           <input 
             type="text" 
             placeholder="Search for help..." 
-            className="w-full bg-white border border-trellis-primary/10 rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-trellis-primary/20"
+            className="w-full bg-white border border-therapy-primary/10 rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-therapy-primary/20"
           />
         </div>
 
@@ -46,33 +46,33 @@ export default function HelpPage() {
 
         {/* Support Channels */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-white p-5 rounded-3xl border border-trellis-primary/5 shadow-sm text-center">
-            <div className="w-10 h-10 bg-trellis-primary/10 rounded-full flex items-center justify-center text-trellis-primary mx-auto mb-3">
+          <div className="bg-white p-5 rounded-3xl border border-therapy-primary/5 shadow-sm text-center">
+            <div className="w-10 h-10 bg-therapy-primary/10 rounded-full flex items-center justify-center text-therapy-primary mx-auto mb-3">
               <MessageCircle size={20} />
             </div>
             <p className="text-sm font-semibold">Live Chat</p>
-            <p className="text-[10px] text-trellis-text-muted mt-1">2 min wait</p>
+            <p className="text-[10px] text-therapy-text-muted mt-1">2 min wait</p>
           </div>
-          <div className="bg-white p-5 rounded-3xl border border-trellis-primary/5 shadow-sm text-center">
-            <div className="w-10 h-10 bg-trellis-primary/10 rounded-full flex items-center justify-center text-trellis-primary mx-auto mb-3">
+          <div className="bg-white p-5 rounded-3xl border border-therapy-primary/5 shadow-sm text-center">
+            <div className="w-10 h-10 bg-therapy-primary/10 rounded-full flex items-center justify-center text-therapy-primary mx-auto mb-3">
               <Mail size={20} />
             </div>
             <p className="text-sm font-semibold">Email Us</p>
-            <p className="text-[10px] text-trellis-text-muted mt-1">24h response</p>
+            <p className="text-[10px] text-therapy-text-muted mt-1">24h response</p>
           </div>
         </div>
 
         {/* FAQs */}
         <div className="space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-trellis-text-muted px-2">Frequently Asked Questions</h3>
-          <div className="bg-white rounded-[2rem] overflow-hidden border border-trellis-primary/5 shadow-sm">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-therapy-text-muted px-2">Frequently Asked Questions</h3>
+          <div className="bg-white rounded-[2rem] overflow-hidden border border-therapy-primary/5 shadow-sm">
             {faqs.map((faq, index) => (
               <React.Fragment key={index}>
                 <div className="p-6">
                   <p className="font-semibold text-sm mb-2">{faq.q}</p>
-                  <p className="text-xs text-trellis-text-muted leading-relaxed">{faq.a}</p>
+                  <p className="text-xs text-therapy-text-muted leading-relaxed">{faq.a}</p>
                 </div>
-                {index < faqs.length - 1 && <div className="h-px bg-trellis-surface mx-6" />}
+                {index < faqs.length - 1 && <div className="h-px bg-therapy-surface mx-6" />}
               </React.Fragment>
             ))}
           </div>
@@ -80,15 +80,15 @@ export default function HelpPage() {
 
         {/* External Resources */}
         <div className="pt-4">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-trellis-text-muted px-2 mb-4">Resources</h3>
+          <h3 className="text-sm font-bold uppercase tracking-widest text-therapy-text-muted px-2 mb-4">Resources</h3>
           <div className="space-y-3">
-            <button className="w-full flex items-center justify-between p-4 bg-trellis-surface rounded-2xl">
+            <button className="w-full flex items-center justify-between p-4 bg-therapy-surface rounded-2xl">
               <span className="text-sm font-medium">Therapeutic Alliance Guide</span>
-              <ExternalLink size={16} className="text-trellis-text-muted" />
+              <ExternalLink size={16} className="text-therapy-text-muted" />
             </button>
-            <button className="w-full flex items-center justify-between p-4 bg-trellis-surface rounded-2xl">
+            <button className="w-full flex items-center justify-between p-4 bg-therapy-surface rounded-2xl">
               <span className="text-sm font-medium">Community Guidelines</span>
-              <ExternalLink size={16} className="text-trellis-text-muted" />
+              <ExternalLink size={16} className="text-therapy-text-muted" />
             </button>
           </div>
         </div>

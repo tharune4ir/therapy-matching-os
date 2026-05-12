@@ -1,11 +1,11 @@
-# 🎥 Trellis — Loom Script (Quick Version)
+# 🎥 Therapy Matching OS — Loom Script (Quick Version)
 ### Just read this while recording. Keep it natural.
 
 ---
 
 ### [OPEN THE APP]
 
-"Hey, so this is Trellis — a therapy matching engine I've been working on. The basic idea is: finding the right therapist is really hard, and most platforms just give you a directory sorted by location and price. That doesn't actually tell you if this person will understand you. So I built a matching engine that uses 58 clinical data points — personality, communication style, culture, the actual issue — to find the right fit."
+"Hey, so this is Therapy Matching OS — a therapy matching engine I've been working on. The basic idea is: finding the right therapist is really hard, and most platforms just give you a directory sorted by location and price. That doesn't actually tell you if this person will understand you. So I built a matching engine that uses 58 clinical data points — personality, communication style, culture, the actual issue — to find the right fit."
 
 ---
 
@@ -113,7 +113,7 @@
 
 ### [WRAP UP]
 
-"So that's Trellis — 58 clinical data points, 28 weighted dimensions, 22 test personas, 16 therapist profiles, dynamic explanations, ORS/SRS feedback loops, crisis safety gates, and a daily engagement layer. All running client-side in the browser."
+"So that's Therapy Matching OS — 58 clinical data points, 28 weighted dimensions, 22 test personas, 16 therapist profiles, dynamic explanations, ORS/SRS feedback loops, crisis safety gates, and a daily engagement layer. All running client-side in the browser."
 
 "Thanks for watching."
 

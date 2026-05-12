@@ -19,7 +19,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
   }
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg relative shadow-2xl overflow-hidden flex flex-col font-sans">
+    <div className="max-w-md mx-auto min-h-screen bg-therapy-bg relative shadow-2xl overflow-hidden flex flex-col font-sans">
       <main className="flex-grow flex flex-col">
         {children}
       </main>

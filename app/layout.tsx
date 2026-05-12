@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import LayoutClient from "@/components/LayoutClient";
-import { TrellisProvider } from "@/contexts/TrellisContext";
+import { TherapyProvider } from "@/contexts/TherapyContext";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -17,13 +17,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Trellis | Find the right therapist, beautifully.",
-  description: "Trellis matches you with a therapist who actually gets you. A clinical-grade matching prototype.",
+  title: "Therapy Matching OS | AI Product Concept",
+  description: "An AI-native concept prototype exploring multi-layer compatibility algorithms for therapy-client matching. Built to demonstrate complex product mechanics and ethical retention loops.",
   openGraph: {
-    title: "Trellis | Therapy Matching Prototype",
-    description: "A research-backed therapy matching engine optimizing for the therapeutic alliance.",
-    siteName: "Trellis",
+    title: "Therapy Matching OS | Product Concept",
+    description: "A research-backed therapy matching prototype demonstrating multi-layer compatibility algorithms.",
+    siteName: "Therapy Matching OS",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Therapy Matching OS | Product Concept",
+    description: "A research-backed therapy matching prototype demonstrating multi-layer compatibility algorithms.",
   },
 };
  
@@ -39,9 +44,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${inter.variable} antialiased`}>
-        <TrellisProvider>
+        <TherapyProvider>
           <LayoutClient>{children}</LayoutClient>
-        </TrellisProvider>
+        </TherapyProvider>
       </body>
     </html>
   );

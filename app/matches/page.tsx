@@ -34,7 +34,7 @@ export default function MatchesPage() {
 
   if (matches.length === 0) {
     return (
-      <div className="max-w-md mx-auto min-h-screen bg-trellis-bg p-6 text-center font-sans">
+      <div className="max-w-md mx-auto min-h-screen bg-therapy-bg p-6 text-center font-sans">
         <h2>No Matches Found</h2>
         <p>The filters are too restrictive.</p>
       </div>
@@ -61,10 +61,10 @@ export default function MatchesPage() {
   const formattedTopMatch = formatTherapist(topMatch);
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-trellis-bg pb-32 font-sans text-trellis-text">
+    <div className="max-w-md mx-auto min-h-screen bg-therapy-bg pb-32 font-sans text-therapy-text">
       {/* Header */}
-      <header className="flex items-center px-6 py-6 sticky top-0 bg-trellis-bg/80 backdrop-blur-md z-40">
-        <Link href="/match" className="p-2 -ml-2 text-trellis-text-muted hover:text-trellis-text transition-colors">
+      <header className="flex items-center px-6 py-6 sticky top-0 bg-therapy-bg/80 backdrop-blur-md z-40">
+        <Link href="/match" className="p-2 -ml-2 text-therapy-text-muted hover:text-therapy-text transition-colors">
           <ChevronLeft size={24} />
         </Link>
         <h1 className="font-serif text-xl ml-2">Your Matches</h1>
@@ -72,15 +72,15 @@ export default function MatchesPage() {
 
       {/* Developer Toggle */}
       <div className="px-6 mb-4">
-        <div className="bg-trellis-surface p-3 rounded-xl border border-trellis-primary/20 flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-trellis-text-muted">
+        <div className="bg-therapy-surface p-3 rounded-xl border border-therapy-primary/20 flex flex-col gap-2">
+          <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-therapy-text-muted">
             <Code size={12} />
             Developer: Switch Persona
           </div>
           <select 
             value={selectedUserId}
             onChange={(e) => setSelectedUserId(e.target.value)}
-            className="w-full bg-white text-sm p-2 rounded border-none outline-none focus:ring-2 focus:ring-trellis-primary"
+            className="w-full bg-white text-sm p-2 rounded border-none outline-none focus:ring-2 focus:ring-therapy-primary"
           >
             {liveUser && <option value="live_user">Your Live Profile (from Onboarding)</option>}
             <optgroup label="Research Personas">
@@ -93,38 +93,38 @@ export default function MatchesPage() {
       </div>
 
       <main className="animate-breathe">
-        <p className="text-trellis-text-muted text-sm px-6 mb-8 leading-relaxed">
+        <p className="text-therapy-text-muted text-sm px-6 mb-8 leading-relaxed">
           We ran your profile against 28 clinical variables. Here are the therapists with the highest probability of a strong working alliance.
         </p>
 
         {/* Top Match */}
-        <div className="mx-6 p-1 bg-gradient-to-br from-trellis-primary/20 to-transparent rounded-[32px]">
-          <div className="bg-white rounded-[28px] p-6 shadow-sm relative border border-trellis-primary/10">
-            <div className="absolute -top-3 right-4 bg-trellis-primary text-white text-[10px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full shadow-md">
+        <div className="mx-6 p-1 bg-gradient-to-br from-therapy-primary/20 to-transparent rounded-[32px]">
+          <div className="bg-white rounded-[28px] p-6 shadow-sm relative border border-therapy-primary/10">
+            <div className="absolute -top-3 right-4 bg-therapy-primary text-white text-[10px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full shadow-md">
               {formattedTopMatch.matchScore}% Match
             </div>
 
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-trellis-primary/10 text-trellis-primary-deep rounded-full flex items-center justify-center text-xl font-serif">
+              <div className="w-16 h-16 bg-therapy-primary/10 text-therapy-primary-deep rounded-full flex items-center justify-center text-xl font-serif">
                 {formattedTopMatch.imageInitials}
               </div>
               <div>
                 <h2 className="font-serif text-xl leading-tight">{formattedTopMatch.name}</h2>
-                <p className="text-xs text-trellis-text-muted mt-0.5">{formattedTopMatch.title}</p>
+                <p className="text-xs text-therapy-text-muted mt-0.5">{formattedTopMatch.title}</p>
               </div>
             </div>
 
-            <p className="text-xs text-trellis-text-muted line-clamp-2 mb-2 leading-relaxed">
+            <p className="text-xs text-therapy-text-muted line-clamp-2 mb-2 leading-relaxed">
               {formattedTopMatch.about}
             </p>
-            <div className="bg-trellis-bg rounded-lg p-3 mb-6">
-              <p className="text-[11px] font-medium text-trellis-text-muted">Why we matched you:</p>
-              <p className="text-[11px] mt-1 text-trellis-primary-deep">{formattedTopMatch.whyText}</p>
+            <div className="bg-therapy-bg rounded-lg p-3 mb-6">
+              <p className="text-[11px] font-medium text-therapy-text-muted">Why we matched you:</p>
+              <p className="text-[11px] mt-1 text-therapy-primary-deep">{formattedTopMatch.whyText}</p>
             </div>
 
             <Link 
               href={`/match?id=${formattedTopMatch.id}`} 
-              className="w-full bg-trellis-primary-deep text-white py-3 rounded-xl font-semibold text-sm flex justify-center items-center shadow-md active:scale-[0.98] transition-all"
+              className="w-full bg-therapy-primary-deep text-white py-3 rounded-xl font-semibold text-sm flex justify-center items-center shadow-md active:scale-[0.98] transition-all"
             >
               View Profile
             </Link>
@@ -132,9 +132,9 @@ export default function MatchesPage() {
         </div>
 
         <div className="px-6 my-8 flex items-center gap-4">
-          <div className="flex-grow h-px bg-trellis-surface"></div>
-          <span className="text-[10px] uppercase tracking-widest font-bold text-trellis-text-muted">Alternative Matches</span>
-          <div className="flex-grow h-px bg-trellis-surface"></div>
+          <div className="flex-grow h-px bg-therapy-surface"></div>
+          <span className="text-[10px] uppercase tracking-widest font-bold text-therapy-text-muted">Alternative Matches</span>
+          <div className="flex-grow h-px bg-therapy-surface"></div>
         </div>
 
         {/* Alternatives */}
@@ -144,24 +144,24 @@ export default function MatchesPage() {
             return (
               <div 
                 key={formatted.id}
-                className="bg-white/50 border border-trellis-surface rounded-2xl p-4 flex flex-col gap-3 hover:bg-white transition-colors cursor-pointer group"
+                className="bg-white/50 border border-therapy-surface rounded-2xl p-4 flex flex-col gap-3 hover:bg-white transition-colors cursor-pointer group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-trellis-surface text-trellis-text-muted rounded-full flex items-center justify-center text-sm font-serif group-hover:bg-trellis-primary/10 group-hover:text-trellis-primary-deep transition-colors">
+                    <div className="w-12 h-12 bg-therapy-surface text-therapy-text-muted rounded-full flex items-center justify-center text-sm font-serif group-hover:bg-therapy-primary/10 group-hover:text-therapy-primary-deep transition-colors">
                       {formatted.imageInitials}
                     </div>
                     <div>
-                      <h3 className="font-serif text-base leading-tight text-trellis-text">{formatted.name}</h3>
-                      <p className="text-[10px] text-trellis-text-muted mt-0.5">{formatted.title}</p>
+                      <h3 className="font-serif text-base leading-tight text-therapy-text">{formatted.name}</h3>
+                      <p className="text-[10px] text-therapy-text-muted mt-0.5">{formatted.title}</p>
                     </div>
                   </div>
                   
-                  <div className="bg-trellis-surface text-trellis-text-muted text-[10px] font-bold px-2 py-1 rounded-md">
+                  <div className="bg-therapy-surface text-therapy-text-muted text-[10px] font-bold px-2 py-1 rounded-md">
                     {formatted.matchScore}%
                   </div>
                 </div>
-                <div className="text-[10px] text-trellis-text-muted italic border-l-2 border-trellis-primary/30 pl-2 line-clamp-2">
+                <div className="text-[10px] text-therapy-text-muted italic border-l-2 border-therapy-primary/30 pl-2 line-clamp-2">
                   {formatted.whyText}
                 </div>
               </div>
@@ -171,13 +171,13 @@ export default function MatchesPage() {
 
         {/* Note on Algorithm */}
         <div className="mt-12 px-10 text-center">
-          <div className="inline-flex items-center justify-center p-2 bg-trellis-primary/5 rounded-full mb-3">
-            <Star size={16} className="text-trellis-primary" fill="currentColor" />
+          <div className="inline-flex items-center justify-center p-2 bg-therapy-primary/5 rounded-full mb-3">
+            <Star size={16} className="text-therapy-primary" fill="currentColor" />
           </div>
-          <p className="text-[11px] leading-relaxed text-trellis-text-muted italic">
+          <p className="text-[11px] leading-relaxed text-therapy-text-muted italic">
             "The therapeutic alliance is the single most replicated predictor of therapy outcome."
           </p>
-          <p className="text-[9px] uppercase tracking-tighter text-trellis-text-muted/50 mt-1">
+          <p className="text-[9px] uppercase tracking-tighter text-therapy-text-muted/50 mt-1">
             (Flückiger, Del Re, Wampold & Horvath, 2018)
           </p>
         </div>
