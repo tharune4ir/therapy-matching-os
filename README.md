@@ -25,8 +25,7 @@ The prototype uses a 3-layer matching logic to pair users with their ideal thera
 
 ## 🔗 Important Links
 - **Live Deployment**: [Vercel Link (Insert Link Here)]
-- **Deep Architecture**: For a deep dive into the clinical research, data schemas, and the 22 MECE user personas, see [PROJECT_MASTER.md](file:///d:/000_before%20portfolio_10526/Portfolio/therapy-matching-os/therapy-matching-os/PROJECT_MASTER.md).
-- **Foundational Research**: See the [Research Master Document](file:///d:/000_before%20portfolio_10526/Portfolio/therapy-matching-os/therapy-matching-os/PROJECT%20-%20Therapy-Client%20Matching%20Research%20Master%20Document.md) for the underlying literature review.
+- **Deep Architecture & Research**: For a comprehensive deep dive into the clinical research, C-NIP weighted algorithm compatibility layers, data schemas, 62-point clinical taxonomy, and 22 MECE patient test personas, see [SOURCE_OF_TRUTH.md](file:///d:/000_before%20portfolio_10526/1_Product%20Lab%20Portfolio/therapy-matching-os/therapy-matching-os/SOURCE_OF_TRUTH.md).
 
 ---
 *Built by Tharun Gajula — Zero-to-One AI Product Manager*
